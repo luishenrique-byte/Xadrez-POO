@@ -13,18 +13,18 @@ public class Peao extends Peca {
 
     public Peao(Cor cor, Posicao posicao, Tabuleiro tabuleiro) {
 
-        super(cor,posicao, tabuleiro);
+        super(cor, posicao, tabuleiro);
 
         this.primeiroMovimento = true;
 
-        if(cor == Cor.BRANCO){
+        if (cor == Cor.BRANCO) {
             direcao = -1;
         } else {
             direcao = 1;
         }
     }
 
-    public void movimentosPossiveis(){
+    public void movimentosPossiveis() {
 
         limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preeenche tudo com false)
 
@@ -34,54 +34,53 @@ public class Peao extends Peca {
         Posicao posicaoDiagDir = new Posicao(); //move de captura diagonal direita
 
 
-
         //MOVIMENTO PARDRÃO DO PEÃO (1 CASA)
         posicaoFrente.setLinha(this.posicao.getLinha() + direcao);
         posicaoFrente.setColuna(this.posicao.getColuna());
 
-        if (tabuleiro.existePosicao(posicaoFrente) && !tabuleiro.existePeca(posicaoFrente)){
+        if (tabuleiro.existePosicao(posicaoFrente) && !tabuleiro.existePeca(posicaoFrente)) {
             matrizMovimentos[posicaoFrente.getLinha()][posicaoFrente.getColuna()] = true;
         }
 
         //MOVIMENTO DUPLO DO PEÃO (PRIMEIRA JOGADA - 2 CASA)
-        if (primeiroMovimento == true){
+        if (primeiroMovimento == true) {
 
             posicaoDupla.setLinha(this.posicao.getLinha() + (2 * direcao));
             posicaoDupla.setColuna(this.posicao.getColuna());
 
             if (tabuleiro.existePosicao(posicaoDupla) &&
-                !tabuleiro.existePeca(posicaoFrente) &&
-                !tabuleiro.existePeca(posicaoDupla)){
+                    !tabuleiro.existePeca(posicaoFrente) &&
+                    !tabuleiro.existePeca(posicaoDupla)) {
                 matrizMovimentos[posicaoDupla.getLinha()][posicaoDupla.getColuna()] = true;
             }
         }
 
         //MOVIMENTO CAPTURA DIAGONAL ESQUERDA (1 CASA)
-        posicaoDiagEsq.setLinha(this.posicao.getLinha()+direcao);
-        posicaoDiagEsq.setColuna(this.posicao.getColuna()-1);
+        posicaoDiagEsq.setLinha(this.posicao.getLinha() + direcao);
+        posicaoDiagEsq.setColuna(this.posicao.getColuna() - 1);
 
         if (tabuleiro.existePosicao(posicaoDiagEsq) &&
-            tabuleiro.existePeca(posicaoDiagEsq) &&
-            (tabuleiro.getPeca(posicaoDiagEsq).cor != this.cor)){
+                tabuleiro.existePeca(posicaoDiagEsq) &&
+                (tabuleiro.getPeca(posicaoDiagEsq).cor != this.cor)) {
             matrizMovimentos[posicaoDiagEsq.getLinha()][posicaoDiagEsq.getColuna()] = true;
         }
 
         //MOVIMENTO CAPTURA DIAGONAL DIREITA (1 CASA)
-        posicaoDiagDir.setLinha(this.posicao.getLinha()+direcao);
-        posicaoDiagDir.setColuna(this.posicao.getColuna()+1);
+        posicaoDiagDir.setLinha(this.posicao.getLinha() + direcao);
+        posicaoDiagDir.setColuna(this.posicao.getColuna() + 1);
 
         if (tabuleiro.existePosicao(posicaoDiagDir) &&
-            tabuleiro.existePeca(posicaoDiagDir) &&
-            (tabuleiro.getPeca(posicaoDiagDir).cor != this.cor)){
+                tabuleiro.existePeca(posicaoDiagDir) &&
+                (tabuleiro.getPeca(posicaoDiagDir).cor != this.cor)) {
             matrizMovimentos[posicaoDiagDir.getLinha()][posicaoDiagDir.getColuna()] = true;
         }
 
     }
 
 
-    public boolean podePromover(Peao peao, Posicao destino){
+    public boolean podePromover(Posicao destino) {
 
-        if( ((peao.cor == Cor.BRANCO) && (destino.getLinha() == 0)) || ((peao.cor == Cor.PRETO) && (destino.getLinha() == 7)) ){
+        if (((this.cor == Cor.BRANCO) && (destino.getLinha() == 0)) || ((this.cor == Cor.PRETO) && (destino.getLinha() == 7))) {
             return true;
         } else {
             return false;
