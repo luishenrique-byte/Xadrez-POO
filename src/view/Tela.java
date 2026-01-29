@@ -75,7 +75,7 @@ public class Tela {
             for (int j = 0; j < 8; j++) {
                 Peca peca = tabu.tabuleiro[i][j];
                 if (tabu.tabuleiro[i][j] instanceof Peao){
-                    if (tabu.tabuleiro[i][j].cor == Cor.BRANCO){
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO){
                         System.out.print(" p ");
                     } else {
                         System.out.print(" p ");

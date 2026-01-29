@@ -8,7 +8,7 @@ public abstract class Peca {
 
     protected boolean[][] matrizMovimentos = new boolean[8][8]; //Uma matriz de movimentos possiveis
 
-    public Cor cor;
+    protected final Cor cor;
     protected Posicao posicao;
     protected Tabuleiro tabuleiro;
 
@@ -41,4 +41,8 @@ public abstract class Peca {
     public void setPosicao(Posicao posicao) { this.posicao = posicao; }
 
     public boolean[][] getMatrizMovimentos() { return matrizMovimentos; }
+
+    public Cor getCor() {
+        return cor;
+    }
 }

@@ -55,7 +55,7 @@ public class PartidaDeXadrez {
 
         Peca peca = tabuleiro.getPeca(origem);
 
-        if (peca.cor != jogadorAtual) {
+        if (peca.getCor() != jogadorAtual) {
             throw new RuntimeException("Está peça pertence ao adversário");
         }
 
