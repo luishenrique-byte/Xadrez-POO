@@ -3,9 +3,9 @@ package view;
 import pecas.Peao;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
-import xadrez.Cor;
+import tabuleiro.Cor;
 import xadrez.PartidaDeXadrez;
-import xadrez.Peca;
+import pecas.Peca;
 
 import java.util.Scanner;
 

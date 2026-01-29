@@ -2,8 +2,7 @@ package pecas;
 
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
-import xadrez.Cor;
-import xadrez.Peca;
+import tabuleiro.Cor;
 
 public class Peao extends Peca {
 

@@ -1,4 +1,4 @@
-package xadrez;
+package tabuleiro;
 
 public enum Cor {
     BRANCO,PRETO;

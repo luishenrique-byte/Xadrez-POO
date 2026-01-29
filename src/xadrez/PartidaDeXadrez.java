@@ -1,6 +1,8 @@
 package xadrez;
 
 import pecas.Peao;
+import pecas.Peca;
+import tabuleiro.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
@@ -59,7 +61,7 @@ public class PartidaDeXadrez {
 
         peca.movimentosPossiveis();
 
-        if (!peca.matrizMovimentos[destino.getLinha()][destino.getColuna()]) {
+        if (!peca.getMatrizMovimentos()[destino.getLinha()][destino.getColuna()]) {
             throw new RuntimeException("Posição destino inválida! Escolha outra posição.");
         }
 

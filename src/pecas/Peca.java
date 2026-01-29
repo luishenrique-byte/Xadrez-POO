@@ -1,5 +1,6 @@
-package xadrez;
+package pecas;
 
+import tabuleiro.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
@@ -38,4 +39,6 @@ public abstract class Peca {
     public Posicao getPosicao() { return posicao; }
 
     public void setPosicao(Posicao posicao) { this.posicao = posicao; }
+
+    public boolean[][] getMatrizMovimentos() { return matrizMovimentos; }
 }

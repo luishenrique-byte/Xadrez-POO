@@ -1,9 +1,6 @@
 package tabuleiro;
 
-import pecas.Peao;
-import xadrez.Peca;
-
-import java.util.Scanner;
+import pecas.Peca;
 
 public class Tabuleiro {
     public Peca[][] tabuleiro = new Peca[8][8];
