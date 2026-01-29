@@ -4,6 +4,8 @@ import pecas.Peao;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.util.Scanner;
+
 public class PartidaDeXadrez {
 
     private int lances = 0;
@@ -70,13 +72,53 @@ public class PartidaDeXadrez {
             peao.setPrimeiroMovimento(false);
 
             if (peao.podePromover(destino)) {
-                tabuleiro.promoverPeao(peao, destino);
+                promoverPeao(peao, destino);
             }
         }
 
         trocarJogador();
 
         lances++; //(OBJETIVO FUTURO DE CONTAR LANCES)
+    }
+
+    // #jogadaEspecial
+    public void promoverPeao(Peao peao, Posicao destino) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("#--- PROMOÇÃO! ---#");
+        System.out.println("Opções de promoção:");
+        System.out.println(" - Dama[D]\n - Torre[T]\n - Bispo[B]\n - Cavalo[C]");
+        System.out.println("Digite o caractere da opção escolhida: ");
+
+        char opcao = sc.next().toLowerCase().charAt(0);
+
+        switch (opcao) {
+            case 'd':
+
+                tabuleiro.posicionarPeca(peao, destino); //primeiro posiciono ele(principalmente caso ele "coma")
+
+                tabuleiro.removerPeca(peao); // remove o peao
+
+                //e ent coloca a dama
+                //Dama dama = new Dama(peao.cor,peao.getPosicao(),this.tabuleiro);     add linha dps de criar a classe
+
+                break;
+
+            case 't':
+
+                break;
+
+            case 'b':
+
+                break;
+
+            case 'c':
+
+                break;
+        }
+
     }
 
     public void trocarJogador() {

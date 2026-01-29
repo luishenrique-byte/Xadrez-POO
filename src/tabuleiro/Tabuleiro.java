@@ -31,45 +31,7 @@ public class Tabuleiro {
         }
     }
 
-    // #jogadaEspecial
-    public void promoverPeao(Peao peao, Posicao destino) {
 
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println();
-        System.out.println("#--- PROMOÇÃO! ---#");
-        System.out.println("Opções de promoção:");
-        System.out.println(" - Dama[D]\n - Torre[T]\n - Bispo[B]\n - Cavalo[C]");
-        System.out.println("Digite o caractere da opção escolhida: ");
-
-        char opcao = sc.next().toLowerCase().charAt(0);
-
-        switch (opcao) {
-            case 'd':
-
-                posicionarPeca(peao, destino); //primeiro posiciono ele(principalmente caso ele "coma")
-
-                removerPeca(peao); // remove o peao
-
-                //e ent coloca a dama
-                //Dama dama = new Dama(peao.cor,peao.getPosicao(),this.tabuleiro);     add linha dps de criar a classe
-
-                break;
-
-            case 't':
-
-                break;
-
-            case 'b':
-
-                break;
-
-            case 'c':
-
-                break;
-        }
-
-    }
 
     public void removerPeca(Peca peca) {
         Posicao posicaoAtual = peca.getPosicao();
