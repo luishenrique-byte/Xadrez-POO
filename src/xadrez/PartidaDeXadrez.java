@@ -18,7 +18,7 @@ public class PartidaDeXadrez {
     }
 
 
-    public void colocarPecasIniciais(){
+    public void colocarPecasIniciais() {
 
         //Peões brancos
         for (int i = 0; i < 8; i++) {
@@ -28,7 +28,7 @@ public class PartidaDeXadrez {
 
             Peao peao = new Peao(Cor.BRANCO, pos, tabuleiro);
 
-            this.tabuleiro.colocarPeca(peao,pos);
+            this.tabuleiro.colocarPeca(peao, pos);
         }
 
         //Peões pretos
@@ -39,38 +39,39 @@ public class PartidaDeXadrez {
 
             Peao peao = new Peao(Cor.PRETO, pos, tabuleiro);
 
-            this.tabuleiro.colocarPeca(peao,pos);
+            this.tabuleiro.colocarPeca(peao, pos);
         }
     }
 
-    public void fazerJogada(Posicao origem, Posicao destino){
+    public void fazerJogada(Posicao origem, Posicao destino) {
 
-        if (!tabuleiro.existePeca(origem)){
+        if (!tabuleiro.existePeca(origem)) {
             throw new RuntimeException("Não existe peça na posição de origem");
         }
 
         Peca peca = tabuleiro.getPeca(origem);
 
-        if (peca.cor != jogadorAtual){
+        if (peca.cor != jogadorAtual) {
             throw new RuntimeException("Está peça pertence ao adversário");
         }
 
         peca.movimentosPossiveis();
 
-        if(!peca.matrizMovimentos[destino.getLinha()][destino.getColuna()]){
+        if (!peca.matrizMovimentos[destino.getLinha()][destino.getColuna()]) {
             throw new RuntimeException("Posição destino inválida! Escolha outra posição.");
         }
 
         tabuleiro.posicionarPeca(peca, destino);
 
-        if (peca instanceof Peao){
+        if (peca instanceof Peao) {
 
             Peao peao = (Peao) peca;
 
             peao.setPrimeiroMovimento(false);
 
-            tabuleiro.promoverPeao(peao,destino);
-
+            if (peao.podePromover(destino)) {
+                tabuleiro.promoverPeao(peao, destino);
+            }
         }
 
         trocarJogador();
@@ -78,8 +79,8 @@ public class PartidaDeXadrez {
         lances++; //(OBJETIVO FUTURO DE CONTAR LANCES)
     }
 
-    public void trocarJogador(){
-        if (jogadorAtual == Cor.BRANCO){
+    public void trocarJogador() {
+        if (jogadorAtual == Cor.BRANCO) {
             this.jogadorAtual = Cor.PRETO;
         } else {
             this.jogadorAtual = Cor.BRANCO;
