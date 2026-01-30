@@ -1,5 +1,6 @@
 package view;
 
+import pecas.Bispo;
 import pecas.Peao;
 import pecas.Torre;
 import tabuleiro.Posicao;
@@ -86,6 +87,12 @@ public class Tela {
                         System.out.print(" T ");
                     } else {
                         System.out.print(" t ");
+                    }
+                } else if(tabu.tabuleiro[i][j] instanceof Bispo) {
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
+                        System.out.print(" B ");
+                    } else {
+                        System.out.print(" b ");
                     }
                 } else {
                     System.out.print(" - ");
