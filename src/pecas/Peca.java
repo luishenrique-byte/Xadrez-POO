@@ -20,14 +20,6 @@ public abstract class Peca {
 
     public abstract void movimentosPossiveis();
 
-    public boolean podeMover(Posicao destino){
-        if (!tabuleiro.existePeca(destino) || tabuleiro.getPeca(destino).cor != this.cor){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public void limparMatrizMovimentos(){
         for (int i = 0; i < matrizMovimentos.length ; i++) {
             for (int j = 0; j < matrizMovimentos[i].length ; j++) {

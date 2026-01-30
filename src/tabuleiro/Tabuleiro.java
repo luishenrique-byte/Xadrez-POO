@@ -13,7 +13,7 @@ public class Tabuleiro {
 
         Peca alvo = getPeca(destino);
 
-        if (existePosicao(destino) && peca.podeMover(destino)) {
+        if (existePosicao(destino) && peca.getMatrizMovimentos()[destino.linha][destino.coluna] == true) {
 
             removerPeca(peca); //remover a peca
 
