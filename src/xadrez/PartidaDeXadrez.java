@@ -150,24 +150,25 @@ public class PartidaDeXadrez {
 
         char opcao = sc.next().toLowerCase().charAt(0);
 
+        tabuleiro.posicionarPeca(peao,destino);//primeiro posiciono ele(principalmente caso ele "coma")
+        Posicao posicaoAtual = peao.getPosicao(); //TOTALMENTE OPCIONAL, pois o objeto peao fica vivo na memória(neste caso)
+        Cor cor = peao.getCor(); //TOTALMENTE OPCIONAL, pois o objeto peao fica vivo na memória(neste caso)
+
+        tabuleiro.removerPeca(peao); // remove o peao
+
         switch (opcao) {
             case 'd':
-
-                tabuleiro.posicionarPeca(peao, destino); //primeiro posiciono ele(principalmente caso ele "coma")
-
-                tabuleiro.removerPeca(peao); // remove o peao
-
-                //e ent coloca a dama
-                //Dama dama = new Dama(peao.cor,peao.getPosicao(),this.tabuleiro);     add linha dps de criar a classe
 
                 break;
 
             case 't':
-
+                Torre torre = new Torre(cor, posicaoAtual, this.tabuleiro);
+                tabuleiro.colocarPeca(torre,posicaoAtual);
                 break;
 
             case 'b':
-
+                Bispo bispo = new Bispo(cor, posicaoAtual, tabuleiro);
+                tabuleiro.colocarPeca(bispo,posicaoAtual);
                 break;
 
             case 'c':

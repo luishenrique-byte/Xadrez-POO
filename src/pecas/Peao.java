@@ -23,6 +23,7 @@ public class Peao extends Peca {
         }
     }
 
+    @Override
     public void movimentosPossiveis() {
 
         limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preeenche tudo com false)
@@ -33,7 +34,7 @@ public class Peao extends Peca {
         Posicao posicaoDiagDir = new Posicao(); //move de captura diagonal direita
 
 
-        //MOVIMENTO PARDRÃO DO PEÃO (1 CASA)
+        //MOVIMENTO PADRÃO DO PEÃO (1 CASA)
         posicaoFrente.setLinha(this.posicao.getLinha() + direcao);
         posicaoFrente.setColuna(this.posicao.getColuna());
 
