@@ -2,6 +2,7 @@ package xadrez;
 
 import pecas.Peao;
 import pecas.Peca;
+import pecas.Torre;
 import tabuleiro.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
@@ -45,6 +46,32 @@ public class PartidaDeXadrez {
 
             this.tabuleiro.colocarPeca(peao, pos);
         }
+
+        //Torres Brancas
+        Posicao pos1 = new Posicao();
+        pos1.setLinha(7);
+        pos1.setColuna(0);
+        Torre torreB1 = new Torre(Cor.BRANCO, pos1, this.tabuleiro);
+        tabuleiro.colocarPeca(torreB1, pos1);
+
+        Posicao pos2 = new Posicao();  // ← NOVA INSTÂNCIA
+        pos2.setLinha(7);
+        pos2.setColuna(7);
+        Torre torreB2 = new Torre(Cor.BRANCO, pos2, this.tabuleiro);
+        tabuleiro.colocarPeca(torreB2, pos2);
+
+        //Torres Pretas
+        Posicao pos3 = new Posicao();  // ← NOVA INSTÂNCIA
+        pos3.setLinha(0);
+        pos3.setColuna(0);
+        Torre torreP1 = new Torre(Cor.PRETO, pos3, this.tabuleiro);
+        tabuleiro.colocarPeca(torreP1, pos3);
+
+        Posicao pos4 = new Posicao();  // ← NOVA INSTÂNCIA
+        pos4.setLinha(0);
+        pos4.setColuna(7);
+        Torre torreP2 = new Torre(Cor.PRETO, pos4, this.tabuleiro);
+        tabuleiro.colocarPeca(torreP2, pos4);
     }
 
     public void fazerJogada(Posicao origem, Posicao destino) {
@@ -78,7 +105,7 @@ public class PartidaDeXadrez {
             }
         }
 
-        trocarJogador();
+//        trocarJogador();
 
         lances++; //(OBJETIVO FUTURO DE CONTAR LANCES)
     }

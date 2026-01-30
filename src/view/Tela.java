@@ -1,6 +1,7 @@
 package view;
 
 import pecas.Peao;
+import pecas.Torre;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import tabuleiro.Cor;
@@ -76,9 +77,15 @@ public class Tela {
                 Peca peca = tabu.tabuleiro[i][j];
                 if (tabu.tabuleiro[i][j] instanceof Peao){
                     if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO){
-                        System.out.print(" p ");
+                        System.out.print(" P ");
                     } else {
                         System.out.print(" p ");
+                    }
+                } else if(tabu.tabuleiro[i][j] instanceof Torre){
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO){
+                        System.out.print(" T ");
+                    } else {
+                        System.out.print(" t ");
                     }
                 } else {
                     System.out.print(" - ");
