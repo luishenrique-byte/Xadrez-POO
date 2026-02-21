@@ -15,108 +15,44 @@ public class Bispo extends Peca{
 
         limparMatrizMovimentos();
 
-        Posicao posDestino = new Posicao();
-
-        int linha;
-        int coluna;
-
         //Nordeste
-        linha = this.posicao.getLinha()-1;
-        coluna = this.posicao.getColuna()+1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-            linha--;
-            coluna++;
-            posDestino.setLinha(linha);
-            posDestino.setColuna(coluna);
-        }
+       calcularMovimentosEmDirecao(-1,+1);
 
         //Noroeste
-
-        linha = this.posicao.getLinha() - 1;
-        coluna = this.posicao.getColuna() - 1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-            linha--;
-            coluna--;
-            posDestino.setLinha(linha);
-            posDestino.setColuna(coluna);
-
-        }
+        calcularMovimentosEmDirecao(-1,-1);
 
         //Sudeste
-        linha = this.posicao.getLinha()+1;
-        coluna = this.posicao.getColuna()+1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-            linha++;
-            coluna++;
-            posDestino.setLinha(linha);
-            posDestino.setColuna(coluna);
-
-        }
+        calcularMovimentosEmDirecao(+1,+1);
 
         //Sudoeste
-        linha = this.posicao.getLinha()+1;
-        coluna = this.posicao.getColuna()-1;
+        calcularMovimentosEmDirecao(+1,-1);
+    }
 
+    public void calcularMovimentosEmDirecao(int deltaLinha, int deltaColuna){ //deltaLinha e deltaColuna são índices de direção
+
+        int linha = this.posicao.getLinha() + deltaLinha;
+        int coluna = this.posicao.getColuna() + deltaColuna;
+
+        Posicao posDestino = new Posicao();
         posDestino.setLinha(linha);
         posDestino.setColuna(coluna);
 
         while (tabuleiro.existePosicao(posDestino)){
+
             if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
+                matrizMovimentos[linha][coluna]=true;
             } else {
                 if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
+                    matrizMovimentos[linha][posDestino.getColuna()]=true;
                 }
                 break;
             }
 
-            linha++;
-            coluna--;
+            linha+=deltaLinha;
+            coluna+=deltaColuna;
+
             posDestino.setLinha(linha);
             posDestino.setColuna(coluna);
-
         }
     }
 }

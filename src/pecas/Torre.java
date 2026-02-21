@@ -15,86 +15,25 @@ public class Torre extends Peca{
 
         limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preeenche tudo com false)
 
-        Posicao posDestino = new Posicao();
-
-        int linha;
-        int coluna;
-
-
         //Acima
-        linha = this.posicao.getLinha()-1;
-        coluna = this.posicao.getColuna();
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-
-            linha--;
-            posDestino.setLinha(linha);
-        }
-
+        calcularMovimentosEmDirecao(-1,0);
 
         //Abaixo
-        linha = this.posicao.getLinha()+1;
-        coluna = this.posicao.getColuna();
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-
-            linha++;
-            posDestino.setLinha(linha);
-        }
+        calcularMovimentosEmDirecao(+1,0);
 
         //Esquerda
-        linha = this.posicao.getLinha();
-        coluna = this.posicao.getColuna()-1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-
-            coluna--;
-            posDestino.setColuna(coluna);
-        }
+        calcularMovimentosEmDirecao(0,-1);
 
         //Direita
-        linha = this.posicao.getLinha();
-        coluna = this.posicao.getColuna()+1;
+        calcularMovimentosEmDirecao(0,+1);
+    }
 
+    public void calcularMovimentosEmDirecao(int deltaLinha, int deltaColuna){ //deltaLinha e deltaColuna são índices de direção
+
+        int linha = this.posicao.getLinha() + deltaLinha;
+        int coluna = this.posicao.getColuna() + deltaColuna;
+
+        Posicao posDestino = new Posicao();
         posDestino.setLinha(linha);
         posDestino.setColuna(coluna);
 
@@ -109,12 +48,13 @@ public class Torre extends Peca{
                 break;
             }
 
+            linha+=deltaLinha;
+            coluna+=deltaColuna;
 
-            coluna++;
+            posDestino.setLinha(linha);
             posDestino.setColuna(coluna);
         }
     }
-
 
     public boolean podeRook(){
         return false;

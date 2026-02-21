@@ -15,209 +15,56 @@ public class Dama extends Peca{
 
         limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preeenche tudo com false)
 
-        Posicao posDestino = new Posicao();
-
-        int linha;
-        int coluna;
-
-
-
         //Norte
-        linha = this.posicao.getLinha()-1;
-        coluna = this.posicao.getColuna();
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-
-            linha--;
-            posDestino.setLinha(linha);
-        }
-
+        calcularMovimentosEmDirecao(-1,0);
 
         //Sul
-        linha = this.posicao.getLinha()+1;
-        coluna = this.posicao.getColuna();
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-
-            linha++;
-            posDestino.setLinha(linha);
-        }
-
+        calcularMovimentosEmDirecao(+1,0);
 
         //Oeste
-        linha = this.posicao.getLinha();
-        coluna = this.posicao.getColuna()-1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-
-            coluna--;
-            posDestino.setColuna(coluna);
-        }
-
+        calcularMovimentosEmDirecao(0,-1);
 
         //Leste
-        linha = this.posicao.getLinha();
-        coluna = this.posicao.getColuna()+1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-
-            coluna++;
-            posDestino.setColuna(coluna);
-        }
-
+        calcularMovimentosEmDirecao(0,+1);
 
         //Nordeste
-        linha = this.posicao.getLinha()-1;
-        coluna = this.posicao.getColuna()+1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-            linha--;
-            coluna++;
-            posDestino.setLinha(linha);
-            posDestino.setColuna(coluna);
-        }
-
+        calcularMovimentosEmDirecao(-1,+1);
 
         //Noroeste
-
-        linha = this.posicao.getLinha() - 1;
-        coluna = this.posicao.getColuna() - 1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-            linha--;
-            coluna--;
-            posDestino.setLinha(linha);
-            posDestino.setColuna(coluna);
-
-        }
-
+        calcularMovimentosEmDirecao(-1,-1);
 
         //Sudeste
-        linha = this.posicao.getLinha()+1;
-        coluna = this.posicao.getColuna()+1;
-
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
-
-        while (tabuleiro.existePosicao(posDestino)){
-
-            if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
-            } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
-                }
-                break;
-            }
-
-            linha++;
-            coluna++;
-            posDestino.setLinha(linha);
-            posDestino.setColuna(coluna);
-
-        }
-
+        calcularMovimentosEmDirecao(+1,+1);
 
         //Sudoeste
-        linha = this.posicao.getLinha()+1;
-        coluna = this.posicao.getColuna()-1;
+        calcularMovimentosEmDirecao(+1,-1);
+    }
 
+    public void calcularMovimentosEmDirecao(int deltaLinha, int deltaColuna){ //deltaLinha e deltaColuna são índices de direção
+
+        int linha = this.posicao.getLinha() + deltaLinha;
+        int coluna = this.posicao.getColuna() + deltaColuna;
+
+        Posicao posDestino = new Posicao();
         posDestino.setLinha(linha);
         posDestino.setColuna(coluna);
 
         while (tabuleiro.existePosicao(posDestino)){
+
             if (!tabuleiro.existePeca(posDestino)){
-                matrizMovimentos[linha][coluna] = true;
+                matrizMovimentos[linha][coluna]=true;
             } else {
                 if (tabuleiro.getPeca(posDestino).cor != this.cor){
-                    matrizMovimentos[linha][coluna] = true;
+                    matrizMovimentos[linha][coluna]=true;
                 }
                 break;
             }
 
-            linha++;
-            coluna--;
+            linha+=deltaLinha;
+            coluna+=deltaColuna;
+
             posDestino.setLinha(linha);
             posDestino.setColuna(coluna);
-
         }
     }
 }
