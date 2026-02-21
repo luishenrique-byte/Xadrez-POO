@@ -1,13 +1,10 @@
 package view;
 
-import pecas.Bispo;
-import pecas.Peao;
-import pecas.Torre;
+import pecas.*;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import tabuleiro.Cor;
 import xadrez.PartidaDeXadrez;
-import pecas.Peca;
 
 import java.util.Scanner;
 
@@ -93,6 +90,12 @@ public class Tela {
                         System.out.print(" B ");
                     } else {
                         System.out.print(" b ");
+                    }
+                } else if(tabu.tabuleiro[i][j] instanceof Cavalo) {
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
+                        System.out.print(" C ");
+                    } else {
+                        System.out.print(" c ");
                     }
                 } else {
                     System.out.print(" - ");

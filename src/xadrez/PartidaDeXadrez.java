@@ -1,9 +1,6 @@
 package xadrez;
 
-import pecas.Bispo;
-import pecas.Peao;
-import pecas.Peca;
-import pecas.Torre;
+import pecas.*;
 import tabuleiro.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
@@ -47,6 +44,13 @@ public class PartidaDeXadrez {
 
             this.tabuleiro.colocarPeca(peao, pos);
         }
+
+        Posicao pos1 = new Posicao();
+        pos1.setLinha(3);
+        pos1.setColuna(3);
+        Cavalo cavaloB1 = new Cavalo(Cor.BRANCO,pos1,this.tabuleiro);
+        tabuleiro.colocarPeca(cavaloB1,pos1);
+
 
 //        //Torres Brancas
 //        Posicao pos1 = new Posicao();
