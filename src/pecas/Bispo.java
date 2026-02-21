@@ -15,10 +15,7 @@ public class Bispo extends Peca{
 
         limparMatrizMovimentos();
 
-        Posicao posicaoNE = new Posicao();
-        Posicao posicaoNO = new Posicao();
-        Posicao posicaoSE = new Posicao();
-        Posicao posicaoSO = new Posicao();
+        Posicao posDestino = new Posicao();
 
         int linha;
         int coluna;
@@ -27,15 +24,15 @@ public class Bispo extends Peca{
         linha = this.posicao.getLinha()-1;
         coluna = this.posicao.getColuna()+1;
 
-        posicaoNE.setLinha(linha);
-        posicaoNE.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posicaoNE)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posicaoNE)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posicaoNE).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -43,8 +40,8 @@ public class Bispo extends Peca{
 
             linha--;
             coluna++;
-            posicaoNE.setLinha(linha);
-            posicaoNE.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
         }
 
         //Noroeste
@@ -52,15 +49,15 @@ public class Bispo extends Peca{
         linha = this.posicao.getLinha() - 1;
         coluna = this.posicao.getColuna() - 1;
 
-        posicaoNO.setLinha(linha);
-        posicaoNO.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posicaoNO)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posicaoNO)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posicaoNO).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -68,8 +65,8 @@ public class Bispo extends Peca{
 
             linha--;
             coluna--;
-            posicaoNO.setLinha(linha);
-            posicaoNO.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
 
         }
 
@@ -77,15 +74,15 @@ public class Bispo extends Peca{
         linha = this.posicao.getLinha()+1;
         coluna = this.posicao.getColuna()+1;
 
-        posicaoSE.setLinha(linha);
-        posicaoSE.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posicaoSE)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posicaoSE)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posicaoSE).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -93,8 +90,8 @@ public class Bispo extends Peca{
 
             linha++;
             coluna++;
-            posicaoSE.setLinha(linha);
-            posicaoSE.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
 
         }
 
@@ -102,14 +99,14 @@ public class Bispo extends Peca{
         linha = this.posicao.getLinha()+1;
         coluna = this.posicao.getColuna()-1;
 
-        posicaoSO.setLinha(linha);
-        posicaoSO.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posicaoSO)){
-            if (!tabuleiro.existePeca(posicaoSO)){
+        while (tabuleiro.existePosicao(posDestino)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posicaoSO).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -117,8 +114,8 @@ public class Bispo extends Peca{
 
             linha++;
             coluna--;
-            posicaoSO.setLinha(linha);
-            posicaoSO.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
 
         }
     }

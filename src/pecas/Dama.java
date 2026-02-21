@@ -15,15 +15,7 @@ public class Dama extends Peca{
 
         limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preeenche tudo com false)
 
-        Posicao posNorte = new Posicao();
-        Posicao posSul = new Posicao();
-        Posicao posOeste = new Posicao();
-        Posicao posLeste = new Posicao();
-
-        Posicao posNE = new Posicao();
-        Posicao posNO = new Posicao();
-        Posicao posSE = new Posicao();
-        Posicao posSO = new Posicao();
+        Posicao posDestino = new Posicao();
 
         int linha;
         int coluna;
@@ -34,15 +26,15 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha()-1;
         coluna = this.posicao.getColuna();
 
-        posNorte.setLinha(linha);
-        posNorte.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posNorte)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posNorte)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posNorte).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -50,7 +42,7 @@ public class Dama extends Peca{
 
 
             linha--;
-            posNorte.setLinha(linha);
+            posDestino.setLinha(linha);
         }
 
 
@@ -58,15 +50,15 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha()+1;
         coluna = this.posicao.getColuna();
 
-        posSul.setLinha(linha);
-        posSul.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posSul)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posSul)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posSul).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -74,7 +66,7 @@ public class Dama extends Peca{
 
 
             linha++;
-            posSul.setLinha(linha);
+            posDestino.setLinha(linha);
         }
 
 
@@ -82,15 +74,15 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha();
         coluna = this.posicao.getColuna()-1;
 
-        posOeste.setLinha(linha);
-        posOeste.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posOeste)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posOeste)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posOeste).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -98,7 +90,7 @@ public class Dama extends Peca{
 
 
             coluna--;
-            posOeste.setColuna(coluna);
+            posDestino.setColuna(coluna);
         }
 
 
@@ -106,15 +98,15 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha();
         coluna = this.posicao.getColuna()+1;
 
-        posLeste.setLinha(linha);
-        posLeste.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posLeste)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posLeste)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posLeste).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -122,7 +114,7 @@ public class Dama extends Peca{
 
 
             coluna++;
-            posLeste.setColuna(coluna);
+            posDestino.setColuna(coluna);
         }
 
 
@@ -130,15 +122,15 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha()-1;
         coluna = this.posicao.getColuna()+1;
 
-        posNE.setLinha(linha);
-        posNE.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posNE)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posNE)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posNE).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -146,8 +138,8 @@ public class Dama extends Peca{
 
             linha--;
             coluna++;
-            posNE.setLinha(linha);
-            posNE.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
         }
 
 
@@ -156,15 +148,15 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha() - 1;
         coluna = this.posicao.getColuna() - 1;
 
-        posNO.setLinha(linha);
-        posNO.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posNO)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posNO)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posNO).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -172,8 +164,8 @@ public class Dama extends Peca{
 
             linha--;
             coluna--;
-            posNO.setLinha(linha);
-            posNO.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
 
         }
 
@@ -182,15 +174,15 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha()+1;
         coluna = this.posicao.getColuna()+1;
 
-        posSE.setLinha(linha);
-        posSE.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posSE)){
+        while (tabuleiro.existePosicao(posDestino)){
 
-            if (!tabuleiro.existePeca(posSE)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posSE).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -198,8 +190,8 @@ public class Dama extends Peca{
 
             linha++;
             coluna++;
-            posSE.setLinha(linha);
-            posSE.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
 
         }
 
@@ -208,14 +200,14 @@ public class Dama extends Peca{
         linha = this.posicao.getLinha()+1;
         coluna = this.posicao.getColuna()-1;
 
-        posSO.setLinha(linha);
-        posSO.setColuna(coluna);
+        posDestino.setLinha(linha);
+        posDestino.setColuna(coluna);
 
-        while (tabuleiro.existePosicao(posSO)){
-            if (!tabuleiro.existePeca(posSO)){
+        while (tabuleiro.existePosicao(posDestino)){
+            if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna] = true;
             } else {
-                if (tabuleiro.getPeca(posSO).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).cor != this.cor){
                     matrizMovimentos[linha][coluna] = true;
                 }
                 break;
@@ -223,8 +215,8 @@ public class Dama extends Peca{
 
             linha++;
             coluna--;
-            posSO.setLinha(linha);
-            posSO.setColuna(coluna);
+            posDestino.setLinha(linha);
+            posDestino.setColuna(coluna);
 
         }
     }
