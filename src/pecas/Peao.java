@@ -28,52 +28,61 @@ public class Peao extends Peca {
 
         limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preeenche tudo com false)
 
-        Posicao posDestino = new Posicao();
-
-
-        //MOVIMENTO PADRÃO DO PEÃO (1 CASA)
-        posDestino.setLinha(this.posicao.getLinha() + direcao);
-        posDestino.setColuna(this.posicao.getColuna());
-
-        if (tabuleiro.existePosicao(posDestino) && !tabuleiro.existePeca(posDestino)) {
-            matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
-        }
-
-        //MOVIMENTO DUPLO DO PEÃO (PRIMEIRA JOGADA - 2 CASA)
-        if (primeiroMovimento) {
-
-            posDestino.setLinha(this.posicao.getLinha() + (2 * direcao));
-            posDestino.setColuna(this.posicao.getColuna());
-
-            if (tabuleiro.existePosicao(posDestino) &&
-                    !tabuleiro.existePeca(posDestino) &&
-                    !tabuleiro.existePeca(posDestino)) {
-                matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
-            }
-        }
-
-        //MOVIMENTO CAPTURA DIAGONAL ESQUERDA (1 CASA)
-        posDestino.setLinha(this.posicao.getLinha() + direcao);
-        posDestino.setColuna(this.posicao.getColuna() - 1);
-
-        if (tabuleiro.existePosicao(posDestino) &&
-                tabuleiro.existePeca(posDestino) &&
-                (tabuleiro.getPeca(posDestino).cor != this.cor)) {
-            matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
-        }
-
-        //MOVIMENTO CAPTURA DIAGONAL DIREITA (1 CASA)
-        posDestino.setLinha(this.posicao.getLinha() + direcao);
-        posDestino.setColuna(this.posicao.getColuna() + 1);
-
-        if (tabuleiro.existePosicao(posDestino) &&
-                tabuleiro.existePeca(posDestino) &&
-                (tabuleiro.getPeca(posDestino).cor != this.cor)) {
-            matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
-        }
+        movimentoPossivelFrente();
+        movimentoPossivelCaptura();
 
     }
 
+    public void movimentoPossivelFrente(){
+        Posicao posFrente = new Posicao();
+        Posicao posDupla = new Posicao();
+
+        int linhaAtual = this.posicao.getLinha();
+        int colunaAtual = this.posicao.getColuna();
+
+        //MOVIMENTO PADRÃO DO PEÃO (1 CASA)
+        posFrente.setLinha(linhaAtual  + direcao);
+        posFrente.setColuna(colunaAtual);
+
+        if (tabuleiro.existePosicao(posFrente) && !tabuleiro.existePeca(posFrente)) {
+
+            this.matrizMovimentos[posFrente.getLinha()][posFrente.getColuna()] = true;
+
+            //MOVIMENTO DUPLO DO PEÃO (PRIMEIRA JOGADA - 2 CASA)
+            if (primeiroMovimento) {
+
+                posDupla.setLinha(linhaAtual + 2*direcao);
+                posDupla.setColuna(colunaAtual);
+
+                if (tabuleiro.existePosicao(posDupla) && !tabuleiro.existePeca(posFrente) && !tabuleiro.existePeca(posDupla)) {
+                    this.matrizMovimentos[posDupla.getLinha()][posDupla.getColuna()] = true;
+                }
+            }
+        }
+    }
+
+    public void movimentoPossivelCaptura(){
+        Posicao posDestino = new Posicao();
+
+        int linhaAtual = this.posicao.getLinha();
+        int colunaAtual = this.posicao.getColuna();
+
+        //MOVIMENTO CAPTURA DIAGONAL ESQUERDA (1 CASA)
+        posDestino.setLinha(linhaAtual + direcao);
+        posDestino.setColuna(colunaAtual - 1);
+
+        if (tabuleiro.existePosicao(posDestino) && tabuleiro.existePeca(posDestino) && (tabuleiro.getPeca(posDestino).cor != this.cor)) {
+            this.matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
+        }
+
+        //MOVIMENTO CAPTURA DIAGONAL DIREITA (1 CASA)
+        posDestino.setLinha(linhaAtual + direcao);
+        posDestino.setColuna(colunaAtual + 1);
+
+        if (tabuleiro.existePosicao(posDestino) && tabuleiro.existePeca(posDestino) && (tabuleiro.getPeca(posDestino).cor != this.cor)) {
+            this.matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
+        }
+    }
 
     public boolean podePromover(Posicao destino) {
 
