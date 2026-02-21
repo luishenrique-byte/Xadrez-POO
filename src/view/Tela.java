@@ -73,29 +73,41 @@ public class Tela {
             System.out.print(esq+" ");
             for (int j = 0; j < 8; j++) {
                 Peca peca = tabu.tabuleiro[i][j];
-                if (tabu.tabuleiro[i][j] instanceof Peao){
-                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO){
+                if (tabu.tabuleiro[i][j] instanceof Peao) {
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
                         System.out.print(" P ");
                     } else {
                         System.out.print(" p ");
                     }
-                } else if(tabu.tabuleiro[i][j] instanceof Torre){
-                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO){
+                } else if (tabu.tabuleiro[i][j] instanceof Torre) {
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
                         System.out.print(" T ");
                     } else {
                         System.out.print(" t ");
                     }
-                } else if(tabu.tabuleiro[i][j] instanceof Bispo) {
+                } else if (tabu.tabuleiro[i][j] instanceof Bispo) {
                     if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
                         System.out.print(" B ");
                     } else {
                         System.out.print(" b ");
                     }
-                } else if(tabu.tabuleiro[i][j] instanceof Cavalo) {
+                } else if (tabu.tabuleiro[i][j] instanceof Cavalo) {
                     if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
                         System.out.print(" C ");
                     } else {
                         System.out.print(" c ");
+                    }
+                } else if(tabu.tabuleiro[i][j] instanceof Dama) {
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
+                        System.out.print(" D ");
+                    } else {
+                        System.out.print(" d ");
+                    }
+                } else if(tabu.tabuleiro[i][j] instanceof Rei) {
+                    if (tabu.tabuleiro[i][j].getCor() == Cor.BRANCO) {
+                        System.out.print(" R ");
+                    } else {
+                        System.out.print(" r ");
                     }
                 } else {
                     System.out.print(" - ");

@@ -23,28 +23,37 @@ public class PartidaDeXadrez {
 
     public void colocarPecasIniciais() {
 
-//        //Peões brancos
-//        for (int i = 0; i < 8; i++) {
-//            Posicao pos = new Posicao();
-//            pos.setLinha(6);
-//            pos.setColuna(i);
-//
-//            Peao peao = new Peao(Cor.BRANCO, pos, tabuleiro);
-//
-//            this.tabuleiro.colocarPeca(peao, pos);
-//        }
-//
-//        //Peões pretos
-//        for (int i = 0; i < 8; i++) {
-//            Posicao pos = new Posicao();
-//            pos.setLinha(1);
-//            pos.setColuna(i);
-//
-//            Peao peao = new Peao(Cor.PRETO, pos, tabuleiro);
-//
-//            this.tabuleiro.colocarPeca(peao, pos);
-//        }
+        //Peões brancos
+        for (int i = 0; i < 8; i++) {
+            Posicao pos = new Posicao();
+            pos.setLinha(6);
+            pos.setColuna(i);
 
+            Peao peao = new Peao(Cor.BRANCO, pos, tabuleiro);
+
+            this.tabuleiro.colocarPeca(peao, pos);
+        }
+
+        //Peões pretos
+        for (int i = 0; i < 8; i++) {
+            Posicao pos = new Posicao();
+            pos.setLinha(1);
+            pos.setColuna(i);
+
+            Peao peao = new Peao(Cor.PRETO, pos, tabuleiro);
+
+            this.tabuleiro.colocarPeca(peao, pos);
+        }
+
+
+        //Rei
+        Posicao pos1 = new Posicao();
+        pos1.setLinha(3);
+        pos1.setColuna(3);
+        Rei reiB = new Rei(Cor.BRANCO,pos1,this.tabuleiro);
+        tabuleiro.colocarPeca(reiB,pos1);
+
+//        //Cavalo
 //        Posicao pos1 = new Posicao();
 //        pos1.setLinha(3);
 //        pos1.setColuna(3);
@@ -52,31 +61,39 @@ public class PartidaDeXadrez {
 //        tabuleiro.colocarPeca(cavaloB1,pos1);
 
 
-        //Torres Brancas
-        Posicao pos1 = new Posicao();
-        pos1.setLinha(7);
-        pos1.setColuna(0);
-        Torre torreB1 = new Torre(Cor.BRANCO, pos1, this.tabuleiro);
-        tabuleiro.colocarPeca(torreB1, pos1);
+        //Dama
+//        Posicao pos1 = new Posicao();
+//        pos1.setLinha(3);
+//        pos1.setColuna(3);
+//        Dama damaB1 = new Dama(Cor.BRANCO,pos1,this.tabuleiro);
+//        tabuleiro.colocarPeca(damaB1,pos1);
 
-        Posicao pos2 = new Posicao();  // ← NOVA INSTÂNCIA
-        pos2.setLinha(7);
-        pos2.setColuna(7);
-        Torre torreB2 = new Torre(Cor.BRANCO, pos2, this.tabuleiro);
-        tabuleiro.colocarPeca(torreB2, pos2);
 
-        //Torres Pretas
-        Posicao pos3 = new Posicao();  // ← NOVA INSTÂNCIA
-        pos3.setLinha(0);
-        pos3.setColuna(0);
-        Torre torreP1 = new Torre(Cor.PRETO, pos3, this.tabuleiro);
-        tabuleiro.colocarPeca(torreP1, pos3);
-
-        Posicao pos4 = new Posicao();  // ← NOVA INSTÂNCIA
-        pos4.setLinha(0);
-        pos4.setColuna(7);
-        Torre torreP2 = new Torre(Cor.PRETO, pos4, this.tabuleiro);
-        tabuleiro.colocarPeca(torreP2, pos4);
+//        //Torres Brancas
+//        Posicao pos1 = new Posicao();
+//        pos1.setLinha(7);
+//        pos1.setColuna(0);
+//        Torre torreB1 = new Torre(Cor.BRANCO, pos1, this.tabuleiro);
+//        tabuleiro.colocarPeca(torreB1, pos1);
+//
+//        Posicao pos2 = new Posicao();  // ← NOVA INSTÂNCIA
+//        pos2.setLinha(7);
+//        pos2.setColuna(7);
+//        Torre torreB2 = new Torre(Cor.BRANCO, pos2, this.tabuleiro);
+//        tabuleiro.colocarPeca(torreB2, pos2);
+//
+//        //Torres Pretas
+//        Posicao pos3 = new Posicao();  // ← NOVA INSTÂNCIA
+//        pos3.setLinha(0);
+//        pos3.setColuna(0);
+//        Torre torreP1 = new Torre(Cor.PRETO, pos3, this.tabuleiro);
+//        tabuleiro.colocarPeca(torreP1, pos3);
+//
+//        Posicao pos4 = new Posicao();  // ← NOVA INSTÂNCIA
+//        pos4.setLinha(0);
+//        pos4.setColuna(7);
+//        Torre torreP2 = new Torre(Cor.PRETO, pos4, this.tabuleiro);
+//        tabuleiro.colocarPeca(torreP2, pos4);
 
 //        //Bispos Brancos
 //        Posicao pos1 = new Posicao();
