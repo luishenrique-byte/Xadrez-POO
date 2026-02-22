@@ -110,21 +110,19 @@ public class PartidaDeXadrez {
 
         switch (opcao) {
             case 'd':
-
+                this.tabuleiro.colocarPeca(new Dama(cor,this.tabuleiro),posicaoAtual);
                 break;
 
             case 't':
-                Torre torre = new Torre(cor, this.tabuleiro);
-                this.tabuleiro.colocarPeca(torre,posicaoAtual);
+                this.tabuleiro.colocarPeca(new Torre(cor, this.tabuleiro),posicaoAtual);
                 break;
 
             case 'b':
-                Bispo bispo = new Bispo(cor, this.tabuleiro);
-                this.tabuleiro.colocarPeca(bispo,posicaoAtual);
+                this.tabuleiro.colocarPeca(new Bispo(cor, this.tabuleiro),posicaoAtual);
                 break;
 
             case 'c':
-
+                this.tabuleiro.colocarPeca(new Cavalo(cor, this.tabuleiro),posicaoAtual);
                 break;
         }
 
