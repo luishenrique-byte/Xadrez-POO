@@ -6,14 +6,14 @@ import tabuleiro.Tabuleiro;
 
 public class Torre extends Peca{
 
-    public Torre(Cor cor, Posicao posicao, Tabuleiro tabuleiro) {
-        super(cor, posicao, tabuleiro);
+    public Torre(Cor cor, Tabuleiro tabuleiro) {
+        super(cor, tabuleiro);
     }
 
     @Override
     public void movimentosPossiveis() {
 
-        limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preeenche tudo com false)
+        limparMatrizMovimentos(); // Primeiro ele "limpa" a matriz (preenche tudo com false)
 
         //Acima
         calcularMovimentosEmDirecao(-1,0);
@@ -33,9 +33,7 @@ public class Torre extends Peca{
         int linha = this.posicao.getLinha() + deltaLinha;
         int coluna = this.posicao.getColuna() + deltaColuna;
 
-        Posicao posDestino = new Posicao();
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
+        Posicao posDestino = new Posicao(linha, coluna);
 
         while (tabuleiro.existePosicao(posDestino)){
 

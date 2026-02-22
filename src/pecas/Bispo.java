@@ -6,8 +6,8 @@ import tabuleiro.Tabuleiro;
 
 public class Bispo extends Peca{
 
-    public Bispo(Cor cor, Posicao posicao, Tabuleiro tabuleiro) {
-        super(cor, posicao, tabuleiro);
+    public Bispo(Cor cor, Tabuleiro tabuleiro) {
+        super(cor, tabuleiro);
     }
 
     @Override
@@ -33,9 +33,7 @@ public class Bispo extends Peca{
         int linha = this.posicao.getLinha() + deltaLinha;
         int coluna = this.posicao.getColuna() + deltaColuna;
 
-        Posicao posDestino = new Posicao();
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
+        Posicao posDestino = new Posicao(linha,coluna);
 
         while (tabuleiro.existePosicao(posDestino)){
 

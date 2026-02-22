@@ -23,103 +23,34 @@ public class PartidaDeXadrez {
 
     public void colocarPecasIniciais() {
 
-        //Peões brancos
+        //PEÇAS BRANCA
+        this.tabuleiro.colocarPeca(new Rei(Cor.BRANCO, this.tabuleiro), new Posicao(7, 4));
+        this.tabuleiro.colocarPeca(new Dama(Cor.BRANCO, this.tabuleiro), new Posicao(7, 3));
+        this.tabuleiro.colocarPeca(new Bispo(Cor.BRANCO, this.tabuleiro), new Posicao(7, 2));
+        this.tabuleiro.colocarPeca(new Bispo(Cor.BRANCO, this.tabuleiro), new Posicao(7, 5));
+        this.tabuleiro.colocarPeca(new Cavalo(Cor.BRANCO, this.tabuleiro), new Posicao(7, 1));
+        this.tabuleiro.colocarPeca(new Cavalo(Cor.BRANCO, this.tabuleiro), new Posicao(7, 6));
+        this.tabuleiro.colocarPeca(new Torre(Cor.BRANCO, this.tabuleiro), new Posicao(7, 0));
+        this.tabuleiro.colocarPeca(new Torre(Cor.BRANCO, this.tabuleiro), new Posicao(7, 7));
+
         for (int i = 0; i < 8; i++) {
-            Posicao pos = new Posicao();
-            pos.setLinha(6);
-            pos.setColuna(i);
-
-            Peao peao = new Peao(Cor.BRANCO, pos, tabuleiro);
-
-            this.tabuleiro.colocarPeca(peao, pos);
-        }
-
-        //Peões pretos
-        for (int i = 0; i < 8; i++) {
-            Posicao pos = new Posicao();
-            pos.setLinha(1);
-            pos.setColuna(i);
-
-            Peao peao = new Peao(Cor.PRETO, pos, tabuleiro);
-
-            this.tabuleiro.colocarPeca(peao, pos);
+            this.tabuleiro.colocarPeca(new Peao(Cor.BRANCO, tabuleiro), new Posicao(6, i));
         }
 
 
-        //Rei
-        Posicao pos1 = new Posicao();
-        pos1.setLinha(3);
-        pos1.setColuna(3);
-        Rei reiB = new Rei(Cor.BRANCO,pos1,this.tabuleiro);
-        tabuleiro.colocarPeca(reiB,pos1);
+        //PEÇAS PRETAS
+        this.tabuleiro.colocarPeca(new Rei(Cor.PRETO, this.tabuleiro), new Posicao(0, 4));
+        this.tabuleiro.colocarPeca(new Dama(Cor.PRETO, this.tabuleiro), new Posicao(0, 3));
+        this.tabuleiro.colocarPeca(new Bispo(Cor.PRETO, this.tabuleiro), new Posicao(0, 2));
+        this.tabuleiro.colocarPeca(new Bispo(Cor.PRETO, this.tabuleiro), new Posicao(0, 5));
+        this.tabuleiro.colocarPeca(new Cavalo(Cor.PRETO, this.tabuleiro), new Posicao(0, 1));
+        this.tabuleiro.colocarPeca(new Cavalo(Cor.PRETO, this.tabuleiro), new Posicao(0, 6));
+        this.tabuleiro.colocarPeca(new Torre(Cor.PRETO, this.tabuleiro), new Posicao(0, 0));
+        this.tabuleiro.colocarPeca(new Torre(Cor.PRETO, this.tabuleiro), new Posicao(0, 7));
 
-//        //Cavalo
-//        Posicao pos1 = new Posicao();
-//        pos1.setLinha(3);
-//        pos1.setColuna(3);
-//        Cavalo cavaloB1 = new Cavalo(Cor.BRANCO,pos1,this.tabuleiro);
-//        tabuleiro.colocarPeca(cavaloB1,pos1);
-
-
-        //Dama
-//        Posicao pos1 = new Posicao();
-//        pos1.setLinha(3);
-//        pos1.setColuna(3);
-//        Dama damaB1 = new Dama(Cor.BRANCO,pos1,this.tabuleiro);
-//        tabuleiro.colocarPeca(damaB1,pos1);
-
-
-//        //Torres Brancas
-//        Posicao pos1 = new Posicao();
-//        pos1.setLinha(7);
-//        pos1.setColuna(0);
-//        Torre torreB1 = new Torre(Cor.BRANCO, pos1, this.tabuleiro);
-//        tabuleiro.colocarPeca(torreB1, pos1);
-//
-//        Posicao pos2 = new Posicao();  // ← NOVA INSTÂNCIA
-//        pos2.setLinha(7);
-//        pos2.setColuna(7);
-//        Torre torreB2 = new Torre(Cor.BRANCO, pos2, this.tabuleiro);
-//        tabuleiro.colocarPeca(torreB2, pos2);
-//
-//        //Torres Pretas
-//        Posicao pos3 = new Posicao();  // ← NOVA INSTÂNCIA
-//        pos3.setLinha(0);
-//        pos3.setColuna(0);
-//        Torre torreP1 = new Torre(Cor.PRETO, pos3, this.tabuleiro);
-//        tabuleiro.colocarPeca(torreP1, pos3);
-//
-//        Posicao pos4 = new Posicao();  // ← NOVA INSTÂNCIA
-//        pos4.setLinha(0);
-//        pos4.setColuna(7);
-//        Torre torreP2 = new Torre(Cor.PRETO, pos4, this.tabuleiro);
-//        tabuleiro.colocarPeca(torreP2, pos4);
-
-//        //Bispos Brancos
-//        Posicao pos1 = new Posicao();
-//        pos1.setLinha(7);
-//        pos1.setColuna(2);
-//        Bispo bispoB1 = new Bispo(Cor.BRANCO,pos1,tabuleiro);
-//        tabuleiro.colocarPeca(bispoB1, pos1);
-//
-//        Posicao pos2 = new Posicao();  // ← NOVA INSTÂNCIA
-//        pos2.setLinha(7);
-//        pos2.setColuna(5);
-//        Bispo bispoB2 = new Bispo(Cor.BRANCO, pos2, this.tabuleiro);
-//        tabuleiro.colocarPeca(bispoB2, pos2);
-//
-//        //Bispos Pretos
-//        Posicao pos3 = new Posicao();  // ← NOVA INSTÂNCIA
-//        pos3.setLinha(0);
-//        pos3.setColuna(2);
-//        Bispo bispoP1 = new Bispo(Cor.PRETO, pos3, this.tabuleiro);
-//        tabuleiro.colocarPeca(bispoP1, pos3);
-//
-//        Posicao pos4 = new Posicao();  // ← NOVA INSTÂNCIA
-//        pos4.setLinha(0);
-//        pos4.setColuna(5);
-//        Bispo bispoP2 = new Bispo(Cor.PRETO, pos4, this.tabuleiro);
-//        tabuleiro.colocarPeca(bispoP2, pos4);
+        for (int i = 0; i < 8; i++) {
+            this.tabuleiro.colocarPeca(new Peao(Cor.PRETO, tabuleiro), new Posicao(1, i));
+        }
     }
 
     public void fazerJogada(Posicao origem, Posicao destino) {
@@ -153,7 +84,7 @@ public class PartidaDeXadrez {
             }
         }
 
-//        trocarJogador();
+        trocarJogador();
 
         lances++; //(OBJETIVO FUTURO DE CONTAR LANCES)
     }
@@ -171,11 +102,11 @@ public class PartidaDeXadrez {
 
         char opcao = sc.next().toLowerCase().charAt(0);
 
-        tabuleiro.posicionarPeca(peao,destino);//primeiro posiciono ele(principalmente caso ele "coma")
+        this.tabuleiro.posicionarPeca(peao,destino);//primeiro posiciono ele(principalmente caso ele "coma")
         Posicao posicaoAtual = peao.getPosicao(); //TOTALMENTE OPCIONAL, pois o objeto peao fica vivo na memória(neste caso)
         Cor cor = peao.getCor(); //TOTALMENTE OPCIONAL, pois o objeto peao fica vivo na memória(neste caso)
 
-        tabuleiro.removerPeca(peao); // remove o peao
+        this.tabuleiro.removerPeca(peao); // remove o peao
 
         switch (opcao) {
             case 'd':
@@ -183,13 +114,13 @@ public class PartidaDeXadrez {
                 break;
 
             case 't':
-                Torre torre = new Torre(cor, posicaoAtual, this.tabuleiro);
-                tabuleiro.colocarPeca(torre,posicaoAtual);
+                Torre torre = new Torre(cor, this.tabuleiro);
+                this.tabuleiro.colocarPeca(torre,posicaoAtual);
                 break;
 
             case 'b':
-                Bispo bispo = new Bispo(cor, posicaoAtual, tabuleiro);
-                tabuleiro.colocarPeca(bispo,posicaoAtual);
+                Bispo bispo = new Bispo(cor, this.tabuleiro);
+                this.tabuleiro.colocarPeca(bispo,posicaoAtual);
                 break;
 
             case 'c':

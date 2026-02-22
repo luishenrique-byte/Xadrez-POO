@@ -8,11 +8,11 @@ public class Peao extends Peca {
 
     private boolean primeiroMovimento;
 
-    private int direcao;
+    private final int direcao;
 
-    public Peao(Cor cor, Posicao posicao, Tabuleiro tabuleiro) {
+    public Peao(Cor cor, Tabuleiro tabuleiro) {
 
-        super(cor, posicao, tabuleiro);
+        super(cor, tabuleiro);
 
         this.primeiroMovimento = true;
 
@@ -34,15 +34,13 @@ public class Peao extends Peca {
     }
 
     public void movimentoPossivelFrente(){
-        Posicao posFrente = new Posicao();
-        Posicao posDupla = new Posicao();
 
         int linhaAtual = this.posicao.getLinha();
         int colunaAtual = this.posicao.getColuna();
 
+
         //MOVIMENTO PADRÃO DO PEÃO (1 CASA)
-        posFrente.setLinha(linhaAtual  + direcao);
-        posFrente.setColuna(colunaAtual);
+        Posicao posFrente = new Posicao(linhaAtual  + direcao,colunaAtual);
 
         if (tabuleiro.existePosicao(posFrente) && !tabuleiro.existePeca(posFrente)) {
 
@@ -51,8 +49,7 @@ public class Peao extends Peca {
             //MOVIMENTO DUPLO DO PEÃO (PRIMEIRA JOGADA - 2 CASA)
             if (primeiroMovimento) {
 
-                posDupla.setLinha(linhaAtual + 2*direcao);
-                posDupla.setColuna(colunaAtual);
+                Posicao posDupla = new Posicao(linhaAtual + 2*direcao,colunaAtual);
 
                 if (tabuleiro.existePosicao(posDupla) && !tabuleiro.existePeca(posFrente) && !tabuleiro.existePeca(posDupla)) {
                     this.matrizMovimentos[posDupla.getLinha()][posDupla.getColuna()] = true;
@@ -62,14 +59,13 @@ public class Peao extends Peca {
     }
 
     public void movimentoPossivelCaptura(){
-        Posicao posDestino = new Posicao();
 
         int linhaAtual = this.posicao.getLinha();
         int colunaAtual = this.posicao.getColuna();
 
+
         //MOVIMENTO CAPTURA DIAGONAL ESQUERDA (1 CASA)
-        posDestino.setLinha(linhaAtual + direcao);
-        posDestino.setColuna(colunaAtual - 1);
+        Posicao posDestino = new Posicao(linhaAtual + direcao,colunaAtual - 1);
 
         if (tabuleiro.existePosicao(posDestino) && tabuleiro.existePeca(posDestino) && (tabuleiro.getPeca(posDestino).cor != this.cor)) {
             this.matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;

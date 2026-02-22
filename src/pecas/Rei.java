@@ -6,8 +6,8 @@ import tabuleiro.Tabuleiro;
 
 public class Rei extends Peca{
 
-    public Rei(Cor cor, Posicao posicao, Tabuleiro tabuleiro) {
-        super(cor, posicao, tabuleiro);
+    public Rei(Cor cor, Tabuleiro tabuleiro) {
+        super(cor, tabuleiro);
     }
 
     @Override
@@ -45,9 +45,7 @@ public class Rei extends Peca{
         int linha = this.posicao.getLinha() + deltaLinha;
         int coluna = this.posicao.getColuna() + deltaColuna;
 
-        Posicao posDestino = new Posicao();
-        posDestino.setLinha(linha);
-        posDestino.setColuna(coluna);
+        Posicao posDestino = new Posicao(linha,coluna);
 
         if (tabuleiro.existePosicao(posDestino)){
             if (!tabuleiro.existePeca(posDestino) || tabuleiro.getPeca(posDestino).cor != this.cor){

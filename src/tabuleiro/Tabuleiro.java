@@ -5,8 +5,9 @@ import pecas.Peca;
 public class Tabuleiro {
     public Peca[][] tabuleiro = new Peca[8][8];
 
-    public void colocarPeca(Peca peca, Posicao posicao) {
-        tabuleiro[posicao.linha][posicao.coluna] = peca;
+    public void colocarPeca(Peca peca, Posicao pos) {
+        peca.setPosicao(pos);
+        tabuleiro[pos.linha][pos.coluna] = peca;
     }
 
     public void posicionarPeca(Peca peca, Posicao destino) {

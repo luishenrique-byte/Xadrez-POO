@@ -8,13 +8,7 @@ import xadrez.PartidaDeXadrez;
 
 import java.util.Scanner;
 
-
-
 //classe em desenvolvimento TUDO AQUI É PROVISÓRIO ent mudar dps
-
-
-
-
 
 public class Tela {
 
@@ -23,16 +17,17 @@ public class Tela {
         PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
 
         while (true){
+            try {
+                mostrarTabuleiro(partidaDeXadrez.tabuleiro);
 
-            mostrarTabuleiro(partidaDeXadrez.tabuleiro);
+                Posicao posOrigem = lerPosicao(sc, "origem");
+                Posicao posDestino = lerPosicao(sc, "destino");
 
-            Posicao posOrigem = lerPosicao(sc, "origem");
-            Posicao posDestino = lerPosicao(sc, "destino");
-
-            partidaDeXadrez.fazerJogada(posOrigem, posDestino);
+                partidaDeXadrez.fazerJogada(posOrigem, posDestino);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-
     }
 
     private static Posicao lerPosicao(Scanner sc, String tipo) {
@@ -54,11 +49,7 @@ public class Tela {
         //         e troca o valor
         int coluna = colunaChar - 'a';     // 'a'->0, 'b'->1 ...
 
-        Posicao pos = new Posicao();
-        pos.setLinha(linha);
-        pos.setColuna(coluna);
-
-
+        Posicao pos = new Posicao(linha,coluna);
 
         return pos;
     }
