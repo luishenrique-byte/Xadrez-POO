@@ -4,6 +4,9 @@ import tabuleiro.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Rei extends Peca{
 
     public Rei(Cor cor, Tabuleiro tabuleiro) {
@@ -53,5 +56,22 @@ public class Rei extends Peca{
             }
         }
 
+    }
+
+    public boolean estaEmCheck(){
+
+        ArrayList<Peca> listaPecas = tabuleiro.getPecasNoTabuleiro();
+
+        for(Peca pecaInimiga : listaPecas){
+            if (pecaInimiga.cor != this.cor){
+                pecaInimiga.movimentosPossiveis();
+                boolean matrizMovimentosInimiga[][] = pecaInimiga.getMatrizMovimentos();
+
+                if (matrizMovimentosInimiga[this.posicao.getLinha()][this.posicao.getColuna()]){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

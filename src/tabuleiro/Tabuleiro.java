@@ -2,12 +2,16 @@ package tabuleiro;
 
 import pecas.Peca;
 
+import java.util.ArrayList;
+
 public class Tabuleiro {
     public Peca[][] tabuleiro = new Peca[8][8];
+    private ArrayList<Peca> pecasNoTabuleiro = new ArrayList<Peca>();
 
     public void colocarPeca(Peca peca, Posicao pos) {
         peca.setPosicao(pos);
-        tabuleiro[pos.linha][pos.coluna] = peca;
+        this.tabuleiro[pos.linha][pos.coluna] = peca;
+        this.pecasNoTabuleiro.add(peca);
     }
 
     public void posicionarPeca(Peca peca, Posicao destino) {
@@ -33,8 +37,8 @@ public class Tabuleiro {
 
     public void removerPeca(Peca peca) {
         Posicao posicaoAtual = peca.getPosicao();
-
-        tabuleiro[posicaoAtual.linha][posicaoAtual.coluna] = null;
+        this.tabuleiro[posicaoAtual.linha][posicaoAtual.coluna] = null;
+        this.pecasNoTabuleiro.remove(peca);
     }
 
     public boolean existePeca(Posicao posicao) {
@@ -65,5 +69,9 @@ public class Tabuleiro {
         int linha = posicao.getLinha();
         int coluna = posicao.getColuna();
         return this.tabuleiro[linha][coluna];
+    }
+
+    public ArrayList<Peca> getPecasNoTabuleiro(){
+        return this.pecasNoTabuleiro;
     }
 }
