@@ -1,12 +1,14 @@
 package tabuleiro;
 
 import pecas.Peca;
+import pecas.Rei;
 
 import java.util.ArrayList;
 
 public class Tabuleiro {
     public Peca[][] tabuleiro = new Peca[8][8];
     private ArrayList<Peca> pecasNoTabuleiro = new ArrayList<Peca>();
+    private ArrayList<Peca> pecasCapturadas = new ArrayList<Peca>();
 
     public void colocarPeca(Peca peca, Posicao pos) {
         peca.setPosicao(pos);
@@ -24,6 +26,7 @@ public class Tabuleiro {
 
             if (alvo != null) { //momento de captura de peça
                 removerPeca(alvo);
+                pecasCapturadas.add(alvo);
             }
 
             tabuleiro[destino.linha][destino.coluna] = peca; //colocar a peca
@@ -69,6 +72,14 @@ public class Tabuleiro {
         int linha = posicao.getLinha();
         int coluna = posicao.getColuna();
         return this.tabuleiro[linha][coluna];
+    }
+    public Rei getRei(Cor jogadorAtual){
+        for(Peca peca : pecasNoTabuleiro){
+            if (peca instanceof Rei && peca.getCor() == jogadorAtual){
+                return (Rei) peca;
+            }
+        }
+        throw new RuntimeException("Não existe rei da cor " + jogadorAtual + " no tabuleiro.");
     }
 
     public ArrayList<Peca> getPecasNoTabuleiro(){

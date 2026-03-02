@@ -20,7 +20,6 @@ public class PartidaDeXadrez {
         colocarPecasIniciais();
     }
 
-
     public void colocarPecasIniciais() {
 
         //PEÇAS BRANCA
@@ -73,6 +72,11 @@ public class PartidaDeXadrez {
 
         tabuleiro.posicionarPeca(peca, destino);
 
+        if(jogadorEmXeque()){
+            desfazerJogada(destino,origem,peca);
+            throw new RuntimeException("**********************\n SEU REI ESTÁ EM XEQUE \n      PROTEJA-O\n*********************");
+        }
+
         if (peca instanceof Peao) {
 
             Peao peao = (Peao) peca;
@@ -88,6 +92,8 @@ public class PartidaDeXadrez {
 
         lances++; //(OBJETIVO FUTURO DE CONTAR LANCES)
     }
+
+    public void desfazerJogada(Posicao posAtual, Posicao posVoltar, Peca peca){ }
 
     // #jogadaEspecial
     public void promoverPeao(Peao peao, Posicao destino) {
@@ -125,7 +131,10 @@ public class PartidaDeXadrez {
                 this.tabuleiro.colocarPeca(new Cavalo(cor, this.tabuleiro),posicaoAtual);
                 break;
         }
+    }
 
+    public boolean jogadorEmXeque(){
+        return tabuleiro.getRei(this.jogadorAtual).estaEmCheck();
     }
 
     public void trocarJogador() {
