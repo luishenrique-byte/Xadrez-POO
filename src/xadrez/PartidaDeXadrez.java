@@ -50,6 +50,9 @@ public class PartidaDeXadrez {
         for (int i = 0; i < 8; i++) {
             this.tabuleiro.colocarPeca(new Peao(Cor.PRETO, tabuleiro), new Posicao(1, i));
         }
+
+//        ambienteDeTeste();
+
     }
 
     public void fazerJogada(Posicao origem, Posicao destino) {
@@ -73,7 +76,7 @@ public class PartidaDeXadrez {
         tabuleiro.posicionarPeca(peca, destino);
 
         if(jogadorEmXeque()){
-            desfazerJogada(destino,origem,peca);
+            desfazerJogada(origem,peca);
             throw new RuntimeException("**********************\n SEU REI ESTÁ EM XEQUE \n      PROTEJA-O\n*********************");
         }
 
@@ -90,10 +93,45 @@ public class PartidaDeXadrez {
 
         trocarJogador();
 
-        lances++; //(OBJETIVO FUTURO DE CONTAR LANCES)
+        //lances++; (OBJETIVO FUTURO DE CONTAR LANCES)
     }
 
-    public void desfazerJogada(Posicao posAtual, Posicao posVoltar, Peca peca){ }
+    /**
+     * Desfaz a última jogada realizada.
+     *
+     * Este método é acionado quando uma jogada deixa o rei em xeque,
+     * realizando o rollback completo da ação.
+     *
+     * Fluxo do desfazer:
+     * 1. Remove a peça que foi movida da posição atual.
+     * 2. Recupera a última peça registrada na lista de peças capturadas.
+     *    - Essa peça pode ser null, indicando que não houve captura.
+     * 3. Caso exista uma peça capturada, ela é restaurada ao tabuleiro
+     *    na posição que ainda está armazenada internamente no objeto.
+     * 4. Remove o registro da captura da lista (comportamento de pilha - LIFO).
+     * 5. Reposiciona a peça movida de volta à sua posição original.
+     *
+     * Observações importantes:
+     * - A lista pecasCapturadas funciona como uma pilha de controle
+     *   sincronizada com cada jogada realizada.
+     * - O funcionamento correto do rollback depende do fato de que
+     *   a peça capturada mantém sua posição original armazenada no objeto.
+     */
+    public void desfazerJogada(Posicao posVoltar, Peca pecaMovida){
+
+        tabuleiro.removerPeca(pecaMovida);
+
+        int ultimoIndice = tabuleiro.pecasCapturadas.size() - 1;
+        Peca pecaCapturada = tabuleiro.pecasCapturadas.get(ultimoIndice);
+        if (pecaCapturada != null){
+            tabuleiro.colocarPeca(pecaCapturada, pecaCapturada.getPosicao());
+        }
+        tabuleiro.pecasCapturadas.remove(ultimoIndice);
+
+
+        tabuleiro.colocarPeca(pecaMovida,posVoltar);
+
+    }
 
     // #jogadaEspecial
     public void promoverPeao(Peao peao, Posicao destino) {
@@ -132,7 +170,6 @@ public class PartidaDeXadrez {
                 break;
         }
     }
-
     public boolean jogadorEmXeque(){
         return tabuleiro.getRei(this.jogadorAtual).estaEmCheck();
     }
@@ -147,5 +184,14 @@ public class PartidaDeXadrez {
 
     public int getLances() {
         return lances;
+    }
+    public void ambienteDeTeste(){
+        this.tabuleiro.colocarPeca(new Rei(Cor.BRANCO, this.tabuleiro), new Posicao(7, 4));
+
+        this.tabuleiro.colocarPeca(new Torre(Cor.PRETO, this.tabuleiro), new Posicao(0, 4));
+
+        this.tabuleiro.colocarPeca(new Peao(Cor.PRETO, tabuleiro), new Posicao(7,0));
+
+        this.tabuleiro.colocarPeca(new Dama(Cor.BRANCO, this.tabuleiro), new Posicao(0,0));
     }
 }

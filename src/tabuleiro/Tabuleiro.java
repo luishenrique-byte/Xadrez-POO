@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Tabuleiro {
     public Peca[][] tabuleiro = new Peca[8][8];
     private ArrayList<Peca> pecasNoTabuleiro = new ArrayList<Peca>();
-    private ArrayList<Peca> pecasCapturadas = new ArrayList<Peca>();
+    public ArrayList<Peca> pecasCapturadas = new ArrayList<Peca>();
 
     public void colocarPeca(Peca peca, Posicao pos) {
         peca.setPosicao(pos);
@@ -24,10 +24,7 @@ public class Tabuleiro {
 
             removerPeca(peca); //remover a peca
 
-            if (alvo != null) { //momento de captura de peça
-                removerPeca(alvo);
-                pecasCapturadas.add(alvo);
-            }
+            capturarPeca(alvo);
 
             tabuleiro[destino.linha][destino.coluna] = peca; //colocar a peca
 
@@ -36,12 +33,25 @@ public class Tabuleiro {
         }
     }
 
+    public void capturarPeca(Peca pecaAlvo){
+        removerPeca(pecaAlvo);
+        pecasCapturadas.add(pecaAlvo);
+    }
 
-
+    /**
+     * Remove uma peça do tabuleiro.
+     *
+     * IMPORTANTE:
+     * A posição interna da peça NÃO é alterada.
+     * Isso é necessário para permitir o correto funcionamento
+     * do rollback em desfazerJogada().
+     */
     public void removerPeca(Peca peca) {
-        Posicao posicaoAtual = peca.getPosicao();
-        this.tabuleiro[posicaoAtual.linha][posicaoAtual.coluna] = null;
-        this.pecasNoTabuleiro.remove(peca);
+        if (peca != null){
+            Posicao posicaoAtual = peca.getPosicao();
+            this.tabuleiro[posicaoAtual.linha][posicaoAtual.coluna] = null;
+            this.pecasNoTabuleiro.remove(peca);
+        }
     }
 
     public boolean existePeca(Posicao posicao) {
