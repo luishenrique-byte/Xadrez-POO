@@ -1,10 +1,11 @@
-package view;
+package ui;
 
 import pecas.*;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
-import tabuleiro.Cor;
+import xadrez.Cor;
 import xadrez.PartidaDeXadrez;
+import xadrez.Peca;
 
 import java.util.Scanner;
 

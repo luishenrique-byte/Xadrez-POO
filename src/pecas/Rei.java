@@ -1,13 +1,13 @@
 package pecas;
 
-import tabuleiro.Cor;
+import xadrez.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.Peca;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Rei extends Peca{
+public class Rei extends Peca {
 
     public Rei(Cor cor, Tabuleiro tabuleiro) {
         super(cor, tabuleiro);

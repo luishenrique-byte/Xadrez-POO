@@ -1,7 +1,8 @@
 package tabuleiro;
 
-import pecas.Peca;
+import xadrez.Peca;
 import pecas.Rei;
+import xadrez.Cor;
 
 import java.util.ArrayList;
 

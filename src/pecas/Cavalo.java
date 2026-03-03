@@ -1,10 +1,11 @@
 package pecas;
 
-import tabuleiro.Cor;
+import xadrez.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.Peca;
 
-public class Cavalo extends Peca{
+public class Cavalo extends Peca {
     public Cavalo(Cor cor, Tabuleiro tabuleiro) {
         super(cor, tabuleiro);
     }
