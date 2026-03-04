@@ -13,25 +13,7 @@ import java.util.Scanner;
 
 public class Tela {
 
-    public static void main() {
-        Scanner sc = new Scanner(System.in);
-        PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
-
-        while (true){
-            try {
-                mostrarTabuleiro(partidaDeXadrez.tabuleiro);
-
-                Posicao posOrigem = lerPosicao(sc, "origem");
-                Posicao posDestino = lerPosicao(sc, "destino");
-
-                partidaDeXadrez.fazerJogada(posOrigem, posDestino);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private static Posicao lerPosicao(Scanner sc, String tipo) {
+    public static Posicao lerPosicao(Scanner sc, String tipo) {
 
         System.out.println("linha " + tipo + " (1 a 8)");
         int linhaUsuario = sc.nextInt();
@@ -54,7 +36,6 @@ public class Tela {
 
         return pos;
     }
-
 
     public static void mostrarTabuleiro(Tabuleiro tabu){
 
