@@ -7,7 +7,7 @@ public abstract class Peca {
 
     protected boolean[][] matrizMovimentos = new boolean[8][8]; //Uma matriz de movimentos possiveis
 
-    protected final Cor cor;
+    protected Cor cor;
     protected Posicao posicao;
     protected Tabuleiro tabuleiro;
 

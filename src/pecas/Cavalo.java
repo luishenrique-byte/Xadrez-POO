@@ -48,7 +48,7 @@ public class Cavalo extends Peca {
         Posicao posDestino = new Posicao(linha,coluna);
 
         if (tabuleiro.existePosicao(posDestino)){
-            if (!tabuleiro.existePeca(posDestino) || tabuleiro.getPeca(posDestino).cor != this.cor){
+            if (!tabuleiro.existePeca(posDestino) || tabuleiro.getPeca(posDestino).getCor() != this.cor){
                 matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
             }
         }

@@ -53,7 +53,7 @@ public class Dama extends Peca {
             if (!tabuleiro.existePeca(posDestino)){
                 matrizMovimentos[linha][coluna]=true;
             } else {
-                if (tabuleiro.getPeca(posDestino).cor != this.cor){
+                if (tabuleiro.getPeca(posDestino).getCor() != this.cor){
                     matrizMovimentos[linha][coluna]=true;
                 }
                 break;

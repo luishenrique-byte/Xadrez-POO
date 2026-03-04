@@ -51,7 +51,7 @@ public class Rei extends Peca {
         Posicao posDestino = new Posicao(linha,coluna);
 
         if (tabuleiro.existePosicao(posDestino)){
-            if (!tabuleiro.existePeca(posDestino) || tabuleiro.getPeca(posDestino).cor != this.cor){
+            if (!tabuleiro.existePeca(posDestino) || tabuleiro.getPeca(posDestino).getCor() != this.cor){
                 matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
             }
         }
@@ -63,7 +63,7 @@ public class Rei extends Peca {
         ArrayList<Peca> listaPecas = tabuleiro.getPecasNoTabuleiro();
 
         for(Peca pecaInimiga : listaPecas){
-            if (pecaInimiga.cor != this.cor){
+            if (pecaInimiga.getCor() != this.cor){
                 pecaInimiga.movimentosPossiveis();
                 boolean matrizMovimentosInimiga[][] = pecaInimiga.getMatrizMovimentos();
 

@@ -68,7 +68,7 @@ public class Peao extends Peca {
         //MOVIMENTO CAPTURA DIAGONAL ESQUERDA (1 CASA)
         Posicao posDestino = new Posicao(linhaAtual + direcao,colunaAtual - 1);
 
-        if (tabuleiro.existePosicao(posDestino) && tabuleiro.existePeca(posDestino) && (tabuleiro.getPeca(posDestino).cor != this.cor)) {
+        if (tabuleiro.existePosicao(posDestino) && tabuleiro.existePeca(posDestino) && (tabuleiro.getPeca(posDestino).getCor() != this.cor)) {
             this.matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
         }
 
@@ -76,7 +76,7 @@ public class Peao extends Peca {
         posDestino.setLinha(linhaAtual + direcao);
         posDestino.setColuna(colunaAtual + 1);
 
-        if (tabuleiro.existePosicao(posDestino) && tabuleiro.existePeca(posDestino) && (tabuleiro.getPeca(posDestino).cor != this.cor)) {
+        if (tabuleiro.existePosicao(posDestino) && tabuleiro.existePeca(posDestino) && (tabuleiro.getPeca(posDestino).getCor() != this.cor)) {
             this.matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
         }
     }
