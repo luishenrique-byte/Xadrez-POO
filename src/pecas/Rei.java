@@ -3,6 +3,7 @@ package pecas;
 import xadrez.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.PartidaDeXadrez;
 import xadrez.Peca;
 
 import java.util.ArrayList;
@@ -50,8 +51,8 @@ public class Rei extends Peca {
 
         Posicao posDestino = new Posicao(linha,coluna);
 
-        if (tabuleiro.existePosicao(posDestino)){
-            if (!tabuleiro.existePeca(posDestino) || tabuleiro.getPeca(posDestino).getCor() != this.cor){
+        if (this.tabuleiro.existePosicao(posDestino)){
+            if (!this.tabuleiro.existePeca(posDestino) || this.tabuleiro.getPeca(posDestino).getCor() != this.cor){
                 matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
             }
         }
@@ -60,7 +61,7 @@ public class Rei extends Peca {
 
     public boolean estaEmCheck(){
 
-        ArrayList<Peca> listaPecas = tabuleiro.getPecasNoTabuleiro();
+        ArrayList<Peca> listaPecas = this.tabuleiro.getPecasNoTabuleiro();
 
         for(Peca pecaInimiga : listaPecas){
             if (pecaInimiga.getCor() != this.cor){
@@ -73,5 +74,41 @@ public class Rei extends Peca {
             }
         }
         return false;
+    }
+
+    public boolean estaCheckMate(PartidaDeXadrez partidaDeXadrez){
+
+        if (!estaEmCheck()){
+            return false;
+        }
+
+        //quando se atribui com um ArrayList '=' ela apenas cria um ponteiro para o ArrayList original
+        //Quando eu eu faço ' new ArrayList<>(lista_original); ' ele aí sim cria uma cópia.
+        ArrayList<Peca> listaPecas = new ArrayList<>(this.tabuleiro.getPecasNoTabuleiro());
+
+        for(Peca peca : listaPecas){
+            boolean matrizMovimentosPeca[][] = peca.getMatrizMovimentos();
+
+            for (int i = 0; i < matrizMovimentosPeca.length; i++){
+                for (int j = 0; j < matrizMovimentosPeca.length; j++) {
+                    if (matrizMovimentosPeca[i][j]){
+
+                        Posicao posOrigem = peca.getPosicao();
+                        this.tabuleiro.posicionarPeca(peca,new Posicao(i,j));
+
+                        boolean testeCheck = estaEmCheck();
+
+                        partidaDeXadrez.desfazerJogada(posOrigem, peca);
+
+                        if(!testeCheck){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+
     }
 }

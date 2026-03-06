@@ -9,8 +9,7 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         Tela tela = new Tela();
         PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
-
-        while (true){
+        while (!partidaDeXadrez.jogadorEmXequeMate()){
             try {
                 tela.mostrarTabuleiro(partidaDeXadrez.tabuleiro);
 

@@ -14,7 +14,7 @@ public class PartidaDeXadrez {
     public Tabuleiro tabuleiro;
 
     public PartidaDeXadrez() {
-        this.jogadorAtual = Cor.BRANCO;
+        this.jogadorAtual = Cor.PRETO;
         this.tabuleiro = new Tabuleiro();
         colocarPecasIniciais();
     }
@@ -172,6 +172,9 @@ public class PartidaDeXadrez {
     public boolean jogadorEmXeque(){
         return tabuleiro.getRei(this.jogadorAtual).estaEmCheck();
     }
+    public boolean jogadorEmXequeMate(){
+        return tabuleiro.getRei(this.jogadorAtual).estaCheckMate(this);
+    }
 
     public void trocarJogador() {
         if (jogadorAtual == Cor.BRANCO) {
@@ -185,12 +188,12 @@ public class PartidaDeXadrez {
         return lances;
     }
     public void ambienteDeTeste(){
-        this.tabuleiro.colocarPeca(new Rei(Cor.BRANCO, this.tabuleiro), new Posicao(7, 4));
+        this.tabuleiro.colocarPeca(new Rei(Cor.PRETO, this.tabuleiro), new Posicao(5, 5));
+        this.tabuleiro.colocarPeca(new Rei(Cor.BRANCO, this.tabuleiro), new Posicao(7, 0));
+
+        this.tabuleiro.colocarPeca(new Torre(Cor.PRETO, this.tabuleiro), new Posicao(1, 1));
 
         this.tabuleiro.colocarPeca(new Torre(Cor.PRETO, this.tabuleiro), new Posicao(0, 4));
 
-        this.tabuleiro.colocarPeca(new Peao(Cor.PRETO, tabuleiro), new Posicao(7,0));
-
-        this.tabuleiro.colocarPeca(new Dama(Cor.BRANCO, this.tabuleiro), new Posicao(0,0));
     }
 }
