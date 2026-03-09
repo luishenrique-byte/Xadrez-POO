@@ -87,6 +87,12 @@ public class Rei extends Peca {
         ArrayList<Peca> listaPecas = new ArrayList<>(this.tabuleiro.getPecasNoTabuleiro());
 
         for(Peca peca : listaPecas){
+
+            if (peca.getCor() != this.cor){
+                continue;
+            }
+
+            peca.movimentosPossiveis();
             boolean matrizMovimentosPeca[][] = peca.getMatrizMovimentos();
 
             for (int i = 0; i < matrizMovimentosPeca.length; i++){
