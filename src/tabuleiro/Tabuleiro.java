@@ -27,7 +27,7 @@ public class Tabuleiro {
 
             capturarPeca(alvo);
 
-            tabuleiro[destino.linha][destino.coluna] = peca; //colocar a peca
+            colocarPeca(peca,destino);
 
             peca.setPosicao(destino); //Altera o atributo da peça, evita causar bugs
 
@@ -85,7 +85,7 @@ public class Tabuleiro {
         return this.tabuleiro[linha][coluna];
     }
     public Rei getRei(Cor jogadorAtual){
-        for(Peca peca : pecasNoTabuleiro){
+        for(Peca peca : this.pecasNoTabuleiro){
             if (peca instanceof Rei && peca.getCor() == jogadorAtual){
                 return (Rei) peca;
             }
