@@ -7,8 +7,11 @@ import xadrez.Peca;
 
 public class Torre extends Peca {
 
+    private boolean primeiroMovimento;
+
     public Torre(Cor cor, Tabuleiro tabuleiro) {
         super(cor, tabuleiro);
+        primeiroMovimento = true;
     }
 
     @Override
@@ -57,5 +60,11 @@ public class Torre extends Peca {
 
     public boolean podeRook(){
         return false;
+    public boolean isPrimeiroMovimento() {
+        return primeiroMovimento;
+    }
+
+    public void setPrimeiroMovimento(boolean primeiroMovimento) {
+        this.primeiroMovimento = primeiroMovimento;
     }
 }

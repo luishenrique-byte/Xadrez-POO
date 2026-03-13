@@ -74,20 +74,37 @@ public class PartidaDeXadrez {
 
         tabuleiro.posicionarPeca(peca, destino);
 
+        if (peca instanceof Rei rei){
+
+            if (destino.getColuna() == origem.getColuna() - 2){
+
+                fazerRoqueGrande(origem);
+
+            } else if (destino.getColuna() == origem.getColuna() + 2){
+
+                fazerRoquePequeno(origem);
+
+            }
+            rei.setPrimeiroMovimento(false);
+        }
+
         if(jogadorEmXeque()){
             desfazerJogada(origem,peca);
             throw new RuntimeException("**********************\n SEU REI ESTÁ EM XEQUE \n      PROTEJA-O\n*********************");
         }
 
         if (peca instanceof Peao) {
-
             Peao peao = (Peao) peca;
-
-            peao.setPrimeiroMovimento(false);
 
             if (peao.podePromover(destino)) {
                 promoverPeao(peao, destino);
             }
+            peao.setPrimeiroMovimento(false);
+        }
+
+        if (peca instanceof Torre){
+            Torre torre = (Torre) peca;
+            torre.setPrimeiroMovimento(false);
         }
 
         trocarJogador();
@@ -167,6 +184,28 @@ public class PartidaDeXadrez {
             case 'c':
                 this.tabuleiro.colocarPeca(new Cavalo(cor, this.tabuleiro),posicaoAtual);
                 break;
+        }
+    }
+    // #jogadaEspecial    QueenSide
+    public void fazerRoqueGrande(Posicao posReiOrigem){
+
+        Posicao posTorre = new Posicao(posReiOrigem.getLinha(), posReiOrigem.getColuna()-4);
+
+        if (tabuleiro.getPeca(posTorre) instanceof Torre torre) {
+            Posicao destinoTorre = new Posicao(posTorre.getLinha(),posTorre.getColuna()+3);
+            tabuleiro.removerPeca(torre);
+            tabuleiro.colocarPeca(torre,destinoTorre);
+        }
+    }
+    // #jogadaEspecial    KingSide
+    public void fazerRoquePequeno(Posicao posReiOrigem){
+
+        Posicao posTorre = new Posicao(posReiOrigem.getLinha(), posReiOrigem.getColuna()+3);
+
+        if (tabuleiro.getPeca(posTorre) instanceof Torre torre){
+            Posicao destinoTorre = new Posicao(posTorre.getLinha(),posTorre.getColuna()-2);
+            tabuleiro.removerPeca(torre);
+            tabuleiro.colocarPeca(torre,destinoTorre);
         }
     }
     public boolean jogadorEmXeque(){
