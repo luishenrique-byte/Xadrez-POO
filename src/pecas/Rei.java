@@ -47,12 +47,12 @@ public class Rei extends Peca {
         calcularMovimentos(+1,-1);
 
         //Calcular Rook Grande
-        if (caminhoLivreRoque(0) && podeRoque(possivelTorreEsquerda())){
+        if (caminhoLivreRoque(0) && podeRoque(possivelTorreEsquerda(), -1)){
             matrizMovimentos[this.posicao.getLinha()][this.posicao.getColuna()-2] = true;
         }
 
         //Calcular Roque Pequeno
-        if (caminhoLivreRoque(7) && podeRoque(possivelTorreDireita())){
+        if (caminhoLivreRoque(7) && podeRoque(possivelTorreDireita(), +1)){
             matrizMovimentos[this.posicao.getLinha()][this.posicao.getColuna()+2] = true;
         }
     }
@@ -128,7 +128,7 @@ public class Rei extends Peca {
 
     }
 
-    public boolean podeRoque(Torre torre){
+    public boolean podeRoque(Torre torre, int direcao){
         if (torre == null){
             return false;
         }
@@ -137,7 +137,25 @@ public class Rei extends Peca {
         boolean ambosNaoDslocadas = torre.isPrimeiroMovimento() && this.isPrimeiroMovimento();
         boolean reiSeguro = !estaEmCheck();
 
-        return torreAliada && ambosNaoDslocadas && reiSeguro;
+        if (!torreAliada || ambosNaoDslocadas || reiSeguro){
+            return false;
+        }
+
+        // ### Verifica se casas intermediárias estão atacadas ###
+        int colunaRei = this.posicao.getColuna();
+        int linhaRei = this.posicao.getLinha();
+
+        // Verifica casa intermediária e casa final
+        for (int i = 1; i <= 2; i++) {
+            int colunaVerificar = colunaRei + (direcao * i);
+            Posicao posVerificar = new Posicao(linhaRei, colunaVerificar);
+
+            if (caminhoReiRoqueAmeacado(posVerificar)) {
+                return false;
+            }
+        }
+
+        return true;
     }
     public Torre possivelTorreEsquerda(){
         int linhaRei = this.posicao.getLinha();
@@ -150,6 +168,7 @@ public class Rei extends Peca {
         }
         return null;
     }
+
     public Torre possivelTorreDireita(){
         int linhaRei = this.posicao.getLinha();
         int colunaRei = this.posicao.getColuna();
@@ -161,6 +180,7 @@ public class Rei extends Peca {
         }
         return null;
     }
+
     public boolean caminhoLivreRoque(int colunaDirecao){
         int linhaRei = this.posicao.getLinha();
         int colunaRei = this.posicao.getColuna();
@@ -178,6 +198,20 @@ public class Rei extends Peca {
 
         }
         return true; //Caminho Livre
+    }
+
+    public boolean caminhoReiRoqueAmeacado(Posicao posVerificar){
+        ArrayList<Peca> listaPecas = this.tabuleiro.getPecasNoTabuleiro();
+
+        for(Peca pecaInimiga : listaPecas){
+            if (pecaInimiga.getCor() != this.cor){
+                boolean[][] ataques = pecaInimiga.movimentosDeAtaque();
+                if (ataques[posVerificar.getLinha()][posVerificar.getColuna()]){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean[][] movimentosDeAtaque() {
