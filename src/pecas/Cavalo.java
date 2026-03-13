@@ -53,4 +53,8 @@ public class Cavalo extends Peca {
             }
         }
     }
+    public boolean[][] movimentosDeAtaque() {
+        movimentosPossiveis();
+        return this.matrizMovimentos;
+    }
 }

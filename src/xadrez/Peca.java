@@ -18,6 +18,8 @@ public abstract class Peca {
 
     public abstract void movimentosPossiveis();
 
+    public abstract boolean[][] movimentosDeAtaque();
+
     public void limparMatrizMovimentos(){
         for (int i = 0; i < matrizMovimentos.length ; i++) {
             for (int j = 0; j < matrizMovimentos[i].length ; j++) {

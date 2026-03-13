@@ -66,4 +66,8 @@ public class Dama extends Peca {
             posDestino.setColuna(coluna);
         }
     }
+    public boolean[][] movimentosDeAtaque() {
+        movimentosPossiveis();
+        return this.matrizMovimentos;
+    }
 }

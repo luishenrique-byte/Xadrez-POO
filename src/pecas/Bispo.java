@@ -54,4 +54,8 @@ public class Bispo extends Peca {
             posDestino.setColuna(coluna);
         }
     }
+    public boolean[][] movimentosDeAtaque() {
+        movimentosPossiveis();
+        return this.matrizMovimentos;
+    }
 }

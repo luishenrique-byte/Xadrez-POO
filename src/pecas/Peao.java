@@ -90,6 +90,11 @@ public class Peao extends Peca {
         }
     }
 
+    public boolean[][] movimentosDeAtaque() {
+        movimentoPossivelCaptura();
+        return this.matrizMovimentos;
+    }
+
     public void setPrimeiroMovimento(boolean primeiroMovimento) {
         this.primeiroMovimento = primeiroMovimento;
     }

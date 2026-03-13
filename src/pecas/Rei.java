@@ -69,7 +69,6 @@ public class Rei extends Peca {
                 matrizMovimentos[posDestino.getLinha()][posDestino.getColuna()] = true;
             }
         }
-
     }
 
     public boolean estaEmCheck(){
@@ -78,10 +77,8 @@ public class Rei extends Peca {
 
         for(Peca pecaInimiga : listaPecas){
             if (pecaInimiga.getCor() != this.cor){
-                pecaInimiga.movimentosPossiveis();
-                boolean matrizMovimentosInimiga[][] = pecaInimiga.getMatrizMovimentos();
-
-                if (matrizMovimentosInimiga[this.posicao.getLinha()][this.posicao.getColuna()]){
+                boolean[][] ataques = pecaInimiga.movimentosDeAtaque();
+                if (ataques[this.posicao.getLinha()][this.posicao.getColuna()]){
                     return true;
                 }
             }
@@ -181,6 +178,18 @@ public class Rei extends Peca {
 
         }
         return true; //Caminho Livre
+    }
+
+    public boolean[][] movimentosDeAtaque() {
+        boolean[][] matrizMovimentosDeAtaque = this.matrizMovimentos;
+
+        int linhaRei = this.posicao.getLinha();
+        int colunaRei = this.posicao.getColuna();
+
+        matrizMovimentosDeAtaque[linhaRei][colunaRei + 2] = false; //Remove a posição do Roque Pequeno
+        matrizMovimentosDeAtaque[linhaRei][colunaRei - 2] = false; //Remove a posição do Roque Grande
+
+        return matrizMovimentosDeAtaque;
     }
 
     public boolean isPrimeiroMovimento() {

@@ -58,8 +58,10 @@ public class Torre extends Peca {
         }
     }
 
-    public boolean podeRook(){
-        return false;
+    public boolean[][] movimentosDeAtaque() {
+        movimentosPossiveis();
+        return this.matrizMovimentos;
+    }
     public boolean isPrimeiroMovimento() {
         return primeiroMovimento;
     }
