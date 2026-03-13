@@ -102,12 +102,7 @@ public class PartidaDeXadrez {
             peao.setPrimeiroMovimento(false);
         }
 
-        if (peca instanceof Torre){
-            Torre torre = (Torre) peca;
-            torre.setPrimeiroMovimento(false);
-        }
-
-        trocarJogador();
+//        trocarJogador();
 
         //lances++; (OBJETIVO FUTURO DE CONTAR LANCES)
     }

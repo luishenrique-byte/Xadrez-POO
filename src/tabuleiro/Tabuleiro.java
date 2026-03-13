@@ -1,5 +1,7 @@
 package tabuleiro;
 
+import pecas.Peao;
+import pecas.Torre;
 import xadrez.Peca;
 import pecas.Rei;
 import xadrez.Cor;
@@ -31,6 +33,15 @@ public class Tabuleiro {
 
             peca.setPosicao(destino); //Altera o atributo da peça, evita causar bugs
 
+            if (peca instanceof Rei rei){
+                rei.setPrimeiroMovimento(false);
+            }
+            if (peca instanceof Torre torre){
+                torre.setPrimeiroMovimento(false);
+            }
+            if (peca instanceof Peao peao){
+                peao.setPrimeiroMovimento(false);
+            }
         }
     }
 
