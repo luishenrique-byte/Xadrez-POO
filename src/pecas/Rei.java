@@ -181,7 +181,7 @@ public class Rei extends Peca {
     }
 
     public boolean[][] movimentosDeAtaque() {
-        boolean[][] matrizMovimentosDeAtaque = this.matrizMovimentos;
+        boolean[][] matrizMovimentosDeAtaque = this.matrizMovimentos.clone();
 
         int linhaRei = this.posicao.getLinha();
         int colunaRei = this.posicao.getColuna();
