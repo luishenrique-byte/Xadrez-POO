@@ -137,7 +137,7 @@ public class Rei extends Peca {
         boolean ambosNaoDslocadas = torre.isPrimeiroMovimento() && this.isPrimeiroMovimento();
         boolean reiSeguro = !estaEmCheck();
 
-        if (!torreAliada || ambosNaoDslocadas || reiSeguro){
+        if (!torreAliada || !ambosNaoDslocadas || !reiSeguro){
             return false;
         }
 
