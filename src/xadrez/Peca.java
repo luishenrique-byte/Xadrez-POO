@@ -3,6 +3,8 @@ package xadrez;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.util.Arrays;
+
 public abstract class Peca {
 
     protected boolean[][] matrizMovimentos = new boolean[8][8]; //Uma matriz de movimentos possiveis
@@ -37,4 +39,6 @@ public abstract class Peca {
     public Cor getCor() {
         return cor;
     }
+
+    public abstract String toString();
 }

@@ -98,4 +98,11 @@ public class Peao extends Peca {
     public void setPrimeiroMovimento(boolean primeiroMovimento) {
         this.primeiroMovimento = primeiroMovimento;
     }
+    public String toString() {
+        if (this.cor == Cor.BRANCO){
+            return " P ";
+        } else {
+            return " p ";
+        }
+    }
 }

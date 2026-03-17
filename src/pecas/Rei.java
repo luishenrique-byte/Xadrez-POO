@@ -233,4 +233,13 @@ public class Rei extends Peca {
     public void setPrimeiroMovimento(boolean primeiroMovimento) {
         this.primeiroMovimento = primeiroMovimento;
     }
+
+    @Override
+    public String toString() {
+        if (this.cor == Cor.BRANCO){
+            return " R ";
+        } else {
+            return " r ";
+        }
+    }
 }

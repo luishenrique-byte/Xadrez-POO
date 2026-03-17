@@ -70,4 +70,11 @@ public class Dama extends Peca {
         movimentosPossiveis();
         return this.matrizMovimentos;
     }
+    public String toString() {
+        if (this.cor == Cor.BRANCO){
+            return " D ";
+        } else {
+            return " d ";
+        }
+    }
 }

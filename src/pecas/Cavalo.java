@@ -57,4 +57,11 @@ public class Cavalo extends Peca {
         movimentosPossiveis();
         return this.matrizMovimentos;
     }
+    public String toString() {
+        if (this.cor == Cor.BRANCO){
+            return " C ";
+        } else {
+            return " c ";
+        }
+    }
 }

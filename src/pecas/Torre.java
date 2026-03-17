@@ -69,4 +69,11 @@ public class Torre extends Peca {
     public void setPrimeiroMovimento(boolean primeiroMovimento) {
         this.primeiroMovimento = primeiroMovimento;
     }
+    public String toString() {
+        if (this.cor == Cor.BRANCO){
+            return " T ";
+        } else {
+            return " t ";
+        }
+    }
 }

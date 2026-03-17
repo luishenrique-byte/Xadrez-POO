@@ -58,4 +58,13 @@ public class Bispo extends Peca {
         movimentosPossiveis();
         return this.matrizMovimentos;
     }
+
+    @Override
+    public String toString() {
+        if (this.cor == Cor.BRANCO){
+            return " B ";
+        } else {
+            return " b ";
+        }
+    }
 }
