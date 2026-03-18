@@ -22,17 +22,7 @@ public class Rei extends Peca {
 
         limparMatrizMovimentos();
 
-        //Norte
-        calcularMovimentos(-1,0);
-
-        //Sul
-        calcularMovimentos(+1,0);
-
-        //Oeste
-        calcularMovimentos(0,-1);
-
-        //Leste
-        calcularMovimentos(0,+1);
+        calcularMovimentosBasicos();
 
         //Nordeste
         calcularMovimentos(-1,+1);
@@ -70,6 +60,18 @@ public class Rei extends Peca {
             }
         }
     }
+
+    public void calcularMovimentosBasicos(){
+        calcularMovimentos(-1,0); //Norte
+        calcularMovimentos(+1,0); //Sul
+        calcularMovimentos(0,-1); //Oeste
+        calcularMovimentos(0,+1); //Leste
+        calcularMovimentos(-1,+1); //Nordeste
+        calcularMovimentos(-1,-1); //Noroeste
+        calcularMovimentos(+1,+1); //Sudeste
+        calcularMovimentos(+1,-1); //Sudoeste
+    }
+
 
     public boolean estaEmCheck(){
 
@@ -157,6 +159,7 @@ public class Rei extends Peca {
 
         return true;
     }
+
     public Torre possivelTorreEsquerda(){
         int linhaRei = this.posicao.getLinha();
         int colunaRei = this.posicao.getColuna();
