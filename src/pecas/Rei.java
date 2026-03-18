@@ -24,26 +24,28 @@ public class Rei extends Peca {
 
         calcularMovimentosBasicos();
 
-        //Nordeste
-        calcularMovimentos(-1,+1);
+        if (this.primeiroMovimento){
+            //Calcular Rook Grande
+            if (caminhoLivreRoque(0) && podeRoque(possivelTorreEsquerda(), -1)){
 
-        //Noroeste
-        calcularMovimentos(-1,-1);
+                int coluna = this.posicao.getColuna();
 
-        //Sudeste
-        calcularMovimentos(+1,+1);
+                if (coluna >= 0){ // Validação extra de segurança
+                    matrizMovimentos[this.posicao.getLinha()][this.posicao.getColuna()-2] = true;
+                }
 
-        //Sudoeste
-        calcularMovimentos(+1,-1);
+            }
 
-        //Calcular Rook Grande
-        if (caminhoLivreRoque(0) && podeRoque(possivelTorreEsquerda(), -1)){
-            matrizMovimentos[this.posicao.getLinha()][this.posicao.getColuna()-2] = true;
-        }
+            //Calcular Roque Pequeno
+            if (caminhoLivreRoque(7) && podeRoque(possivelTorreDireita(), +1)){
 
-        //Calcular Roque Pequeno
-        if (caminhoLivreRoque(7) && podeRoque(possivelTorreDireita(), +1)){
-            matrizMovimentos[this.posicao.getLinha()][this.posicao.getColuna()+2] = true;
+                int coluna = this.posicao.getColuna();
+
+                if (coluna <= 7){ // Validação extra de segurança
+                    matrizMovimentos[this.posicao.getLinha()][this.posicao.getColuna()+2] = true;
+                }
+
+            }
         }
     }
 
@@ -72,6 +74,10 @@ public class Rei extends Peca {
         calcularMovimentos(+1,-1); //Sudoeste
     }
 
+    public boolean[][] movimentosDeAtaque() {
+        calcularMovimentosBasicos();
+        return this.matrizMovimentos;
+    }
 
     public boolean estaEmCheck(){
 
@@ -217,17 +223,6 @@ public class Rei extends Peca {
         return false;
     }
 
-    public boolean[][] movimentosDeAtaque() {
-        boolean[][] matrizMovimentosDeAtaque = this.matrizMovimentos.clone();
-
-        int linhaRei = this.posicao.getLinha();
-        int colunaRei = this.posicao.getColuna();
-
-        matrizMovimentosDeAtaque[linhaRei][colunaRei + 2] = false; //Remove a posição do Roque Pequeno
-        matrizMovimentosDeAtaque[linhaRei][colunaRei - 2] = false; //Remove a posição do Roque Grande
-
-        return matrizMovimentosDeAtaque;
-    }
 
     public boolean isPrimeiroMovimento() {
         return primeiroMovimento;
