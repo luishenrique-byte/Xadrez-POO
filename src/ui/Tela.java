@@ -13,6 +13,12 @@ import java.util.Scanner;
 
 public class Tela {
 
+    public static final String ANSI_AMARELO = "\u001B[43m";
+    public static final String ANSI_VERDE = "\u001B[42m";
+    public static final String ANSI_PRETO = "";
+    public static final String ANSI_BRANCO = "";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     public static Posicao lerPosicao(Scanner sc, String tipo) {
 
         System.out.println("linha " + tipo + " (1 a 8)");
@@ -45,28 +51,10 @@ public class Tela {
             int esq = 8-i;
             System.out.print(esq+" ");
             for (int j = 0; j < 8; j++) {
+
                 Peca peca = tabu.tabuleiro[i][j];
-                if (peca instanceof Peao) {
 
-                    System.out.print(peca);
-
-                } else if (peca instanceof Torre) {
-
-                    System.out.print(peca);
-
-                } else if (peca instanceof Bispo) {
-
-                    System.out.print(peca);
-
-                } else if (peca instanceof Cavalo) {
-
-                    System.out.print(peca);
-
-                } else if(peca instanceof Dama) {
-
-                    System.out.print(peca);
-
-                } else if(peca instanceof Rei) {
+                if (peca != null) {
 
                     System.out.print(peca);
 
@@ -83,5 +71,61 @@ public class Tela {
             System.out.print(" " + alfabeto[i] + " ");
         }
         System.out.println();
+    }
+    public static void mostrarTabuleiro(Tabuleiro tabu, Peca pecaSeleciona){
+
+        pecaSeleciona.movimentosPossiveis();
+        boolean[][] movimentosPossiveis = pecaSeleciona.getMatrizMovimentos();
+
+        char[] alfabeto = "abcdefgh".toCharArray();
+
+        for (int i = 0; i < 8; i++) {
+
+            int esq = 8-i;
+            System.out.print(esq+" ");
+
+            for (int j = 0; j < 8; j++) {
+
+                Peca peca = tabu.tabuleiro[i][j];
+
+                if (peca != null) {
+
+                    if (peca == pecaSeleciona){
+                        System.out.print(marcarPecaSelecionada(peca));
+                    } else {
+                        System.out.print(peca);
+                    }
+
+                    if (movimentosPossiveis[i][j]){
+                        System.out.print(marcarMovimentoPossivel(peca));
+                    }
+
+                } else {
+
+                    if (movimentosPossiveis[i][j]){
+                        System.out.print(marcarMovimentoPossivel(null));
+                    } else {
+                        System.out.print(" - ");
+                    }
+
+                }
+            }
+            System.out.println();
+        }
+        System.out.print("  ");
+        for (int i = 0; i < 8; i++) {
+            System.out.print(" " + alfabeto[i] + " ");
+        }
+        System.out.println();
+    }
+    public static String marcarPecaSelecionada(Peca peca){
+        return ANSI_AMARELO + peca + ANSI_RESET;
+    }
+    public static String marcarMovimentoPossivel(Peca peca){
+        if (peca != null){
+            return ANSI_VERDE + peca + ANSI_RESET;
+        } else {
+            return ANSI_VERDE + " - " + ANSI_RESET;
+        }
     }
 }
