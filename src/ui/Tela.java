@@ -88,26 +88,21 @@ public class Tela {
 
                 Peca peca = tabu.tabuleiro[i][j];
 
-                if (peca != null) {
-
-                    if (peca == pecaSeleciona){
-                        System.out.print(marcarPecaSelecionada(peca));
-                    } else {
+                // Verifica se é a peça selecionada
+                if (peca == pecaSeleciona) {
+                    System.out.print(marcarPecaSelecionada(peca));
+                }
+                // Verifica se é um movimento possível
+                else if (movimentosPossiveis[i][j]) {
+                    System.out.print(marcarMovimentoPossivel(peca));
+                }
+                // Casa normal (vazia ou com peça não selecionada)
+                else {
+                    if (peca != null) {
                         System.out.print(peca);
-                    }
-
-                    if (movimentosPossiveis[i][j]){
-                        System.out.print(marcarMovimentoPossivel(peca));
-                    }
-
-                } else {
-
-                    if (movimentosPossiveis[i][j]){
-                        System.out.print(marcarMovimentoPossivel(null));
                     } else {
                         System.out.print(" - ");
                     }
-
                 }
             }
             System.out.println();
@@ -128,4 +123,5 @@ public class Tela {
             return ANSI_VERDE + " - " + ANSI_RESET;
         }
     }
+
 }
