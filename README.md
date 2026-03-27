@@ -172,11 +172,12 @@ coluna destino (a a h): e
 ```bash
 # Clone o repositório
 git clone https://github.com/luishenrique-byte/Xadrez-POO.git
-cd XadrezPOO
+cd Xadrez-POO
 
 # Compile todos os arquivos
 javac -d out -sourcepath src src/Program.java
-
+```
+```bash
 # Ou compile manualmente:
 javac -d out src/pecas/*.java src/tabuleiro/*.java src/xadrez/*.java src/ui/*.java src/Program.java
 ```
